@@ -1,0 +1,21 @@
+title: SWEN444
+baseurl: ""
+timezone: America/New_York
+
+future: true
+permalink: /:year/:month/:day/:title
+
+group_name: ""
+group_members:
+  - Bill Dybas
+  - Person 2
+  - Person 3
+  - Person 4
+  - Person 5
+
+# Build settings
+markdown: kramdown
+
+sass:
+  style: compressed
+  sass_dir: _scss
