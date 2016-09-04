@@ -3,11 +3,12 @@
 Our [bi-weekly status blog](https://billdybas.github.io/SWEN444) for [SWEN444](http://www.se.rit.edu/~swen-444/).
 
 ### Group
+#### Team NaN
 - Bill Dybas
-- Person 2
-- Person 3
-- Person 4
-- Person 5
+- Daniel Dang
+- Joshua Shear
+- Brandon Stites
+- Byron Zaharako
 
 ## How to:
 

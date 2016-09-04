@@ -8,10 +8,10 @@ permalink: /:year/:month/:day/:title
 group_name: ""
 group_members:
   - Bill Dybas
-  - Person 2
-  - Person 3
-  - Person 4
-  - Person 5
+  - Daniel Dang
+  - Joshua Shear
+  - Brandon Stites
+  - Byron Zaharako
 
 # Build settings
 markdown: kramdown
