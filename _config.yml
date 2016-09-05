@@ -5,7 +5,7 @@ timezone: America/New_York
 future: true
 permalink: /:year/:month/:day/:title
 
-group_name: ""
+group_name: "Team NaN"
 group_members:
   - Bill Dybas
   - Daniel Dang
