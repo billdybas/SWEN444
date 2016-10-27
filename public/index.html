@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TEMPiN</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Import JQuery-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!--import Materialize JS-->
+    <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+</head>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">TEMPiN</a>
+            <a href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
+            <div id="sidebar" class="side-nav">
+                <a><i class="material-icons">arrow_back</i></a>
+                <ul>
+                    <li><a href="#">Sass</a></li>
+                    <li><a href="#">Components</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+<body>
+
+<div class="container">
+
+</div>
+</body>
+
+<script type="text/javascript">$(document).ready(function () {
+    var sidebar = $(".button-collapse");
+    sidebar.sideNav({
+        closeOnClick: true
+    });
+});
+</script>
+</html>
+
