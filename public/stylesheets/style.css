@@ -1,8 +1,43 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#employeeView,#employerView{
+    width:100%;
+    overflow-y:scroll;
+    padding-top:7px; /*To equal 10 when added with jobPanel*/
 }
 
-a {
-  color: #00B7FF;
+.jobPanel{
+    padding: 3px 15px 0 15px;
+}
+
+.panelJobName{
+   float:left;
+    font-size:16px;
+}
+
+.panelEmployerName{
+    float:left;
+    font-size:14px;
+}
+
+.panelSalary{
+    float:right;
+    font-size:14px;
+}
+
+.panelPostTime{
+    float:right;
+    font-size:14px;
+}
+
+.panelDescription{
+    font-size:14px;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:100%;
+    float:left;
+}
+
+.panelRow{
+    float:left;
+    width:100%;
 }
