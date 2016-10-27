@@ -30,20 +30,27 @@
     </ul>
     <nav style="background-color:#7ECB7D">
         <div class="nav-wrapper">
-            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px"><i class="material-icons">menu</i></a>
-            <a id="backButton" href="#" style="padding-left:15px; display:none;"><i class="material-icons">arrow_back</i></a>
+            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px"><i
+                    class="material-icons">menu</i></a>
+            <a id="backButton" href="#" style="padding-left:15px; display:none;"><i
+                    class="material-icons">arrow_back</i></a>
             <a href="#" class="brand-logo">TEMPiN</a>
             <div id="rightNav">
                 <ul class="right">
-                    <li><a id="search" style="padding-right:0; padding-left:30px;"><i class="material-icons">search</i></a></li>
-                    <li><a id="menu" class="dropdown-button" href="#!" data-activates="dropdownTest"><i class="material-icons">more_vert</i></a></li>
+                    <li><a id="search" style="padding-right:0; padding-left:30px;"><i class="material-icons">search</i></a>
+                    </li>
+                    <li><a id="menu" class="dropdown-button" href="#!" data-activates="dropdownTest"><i
+                            class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
             <div id="sidebar" class="side-nav" style="background-color:#AADCA8">
-                <a><i class="material-icons">arrow_back</i></a>
+                <div id="navProfile">
+                    <div style="padding:15px 0 0 15px"><img id="navProfilePic"/></div>
+                    <div id="navProfileName"></div>
+                </div>
+                <div class="divider"></div>
                 <ul>
-                    <li><a href="#">Sass</a></li>
-                    <li><a href="#">Components</a></li>
+                    <li><a id="jobHistory" href="#">Job History</a></li>
                     <li><a href="#" id="switchViews">Change User</a></li>
                 </ul>
             </div>
@@ -61,7 +68,8 @@
     </div>
 </div>
 <div id="employerView" class="container">
-
+    <div id="offerPanel"></div>
+    <div id="singleOfferView"></div>
 </div>
 </body>
 
@@ -69,10 +77,13 @@
     $(".button-collapse").sideNav({
         closeOnClick: true
     });
-    $("#switchViews").on("click touch",function(){
+    $("#switchViews").on("click touch", function () {
         switchViews();
     });
     createJobPanels();
+    createOfferPanels();
+    $("#navProfilePic")[0].src = fakeUser.profilePicture;
+    $("#navProfileName")[0].innerHTML = fakeUser.name;
 });
 </script>
 </html>

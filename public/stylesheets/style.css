@@ -1,58 +1,76 @@
-#employeeView,#employerView{
-    width:100%;
-    overflow-y:scroll;
-    padding-top:7px; /*To equal 10 when added with jobPanel*/
+#employeeView, #employerView {
+    width: 100%;
+    overflow-y: scroll;
+    padding-top: 7px; /*To equal 10 when added with jobPanel*/
 }
 
-#backButton{
+#backButton {
     float: left;
     position: relative;
     z-index: 1;
     height: 56px;
-    padding-left:15px;
-}
-#panelView{
-    width:100%;
+    padding-left: 15px;
 }
 
-#singleJobView{
-    width:100%;
+#panelView {
+    width: 100%;
 }
 
-.jobPanel{
+#singleJobView {
+    width: 100%;
+}
+
+.jobPanel {
     padding: 3px 15px 0 15px;
 }
 
-.panelJobName{
-   float:left;
-    font-size:16px;
+.panelJobName {
+    float: left;
+    font-size: 16px;
 }
 
-.panelEmployerName{
-    float:left;
-    font-size:14px;
+.panelEmployerName {
+    float: left;
+    font-size: 14px;
 }
 
-.panelSalary{
-    float:right;
-    font-size:14px;
+.panelSalary {
+    float: right;
+    font-size: 14px;
 }
 
-.panelPostTime{
-    float:right;
-    font-size:14px;
+.panelPostTime {
+    float: right;
+    font-size: 14px;
 }
 
-.panelDescription{
-    font-size:14px;
+.panelDescription {
+    font-size: 14px;
     white-space: nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    width:100%;
-    float:left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    float: left;
 }
 
-.panelRow{
-    float:left;
-    width:100%;
+.panelRow {
+    float: left;
+    width: 100%;
+}
+
+#navProfilePic {
+    width: 100px;
+    border-radius: 50%;
+}
+
+#navProfileName {
+    width: 100%;
+    padding-left: 15px;
+    font-size: 18px;
+    margin: -20px 0 0 0;
+}
+
+.offerDots{
+    font-size:17px;
+    float:right;
 }
