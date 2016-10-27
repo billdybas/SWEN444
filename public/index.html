@@ -30,7 +30,8 @@
     </ul>
     <nav style="background-color:#7ECB7D">
         <div class="nav-wrapper">
-            <a href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px"><i class="material-icons">menu</i></a>
+            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px"><i class="material-icons">menu</i></a>
+            <a id="backButton" href="#" style="padding-left:15px; display:none;"><i class="material-icons">arrow_back</i></a>
             <a href="#" class="brand-logo">TEMPiN</a>
             <div id="rightNav">
                 <ul class="right">
@@ -51,8 +52,13 @@
     </nav>
 </div>
 
-<div id="employeeView" class="container">
+<div id="employeeView">
+    <div id="panelView" class="container">
 
+    </div>
+    <div id="singleJobView" style="display:none;">
+        <h1>FULL JOB DETAILS GO HERE</h1>
+    </div>
 </div>
 <div id="employerView" class="container">
 

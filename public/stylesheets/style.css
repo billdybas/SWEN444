@@ -4,6 +4,21 @@
     padding-top:7px; /*To equal 10 when added with jobPanel*/
 }
 
+#backButton{
+    float: left;
+    position: relative;
+    z-index: 1;
+    height: 56px;
+    padding-left:15px;
+}
+#panelView{
+    width:100%;
+}
+
+#singleJobView{
+    width:100%;
+}
+
 .jobPanel{
     padding: 3px 15px 0 15px;
 }

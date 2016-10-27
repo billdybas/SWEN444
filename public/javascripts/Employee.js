@@ -11,17 +11,18 @@ var fakeData={
 };
 
 var employeeView;
-var jobList = [fakeData,fakeData,fakeData,fakeData,fakeData];
+var jobList = [fakeData,fakeData,fakeData,fakeData,fakeData,fakeData,fakeData,fakeData,fakeData,fakeData];
 
 function createJobPanels(){
     employeeView = $("#employeeView")[0]
     jobList.forEach(createSingleJobPanel);
 }
 
-function createSingleJobPanel(jobData){
+function createSingleJobPanel(jobData, index){
     //creating panel
     var panel = document.createElement("div");
     panel.classList="jobPanel col s12";
+    $(panel).on("click touch",function(){showSingleJob(index)});
 
     //creating top line
     var topLine = document.createElement("div");
@@ -65,13 +66,27 @@ function createSingleJobPanel(jobData){
     panel.appendChild(topLine);
     panel.appendChild(middleLine);
     panel.appendChild(bottomLine);
-    
+
+    var panelView = $("#panelView")[0];
     //adding panel
-    employeeView.appendChild(panel);
+    panelView.appendChild(panel);
 
     //adding divider
     var divider = document.createElement("div");
     divider.classList.add("divider");
     divider.style.width="100%";
-    employeeView.appendChild(divider);
+    panelView.appendChild(divider);
+}
+
+function showSingleJob(index){
+    $("#panelView")[0].style.display="none";
+    $("#singleJobView")[0].style.display="block";
+    showBackButton();
+    $("#backButton").one("click touch", function(){showPanels()});
+}
+
+function showPanels(){
+    $("#singleJobView")[0].style.display="none";
+    $("#panelView")[0].style.display="block";
+    showHamburger()
 }
