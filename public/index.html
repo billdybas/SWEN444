@@ -39,19 +39,26 @@
                 <ul class="right">
                     <li><a id="search" style="padding-right:0; padding-left:30px;"><i class="material-icons">search</i></a>
                     </li>
-                    <li><a id="menu" class="dropdown-button" href="#!" data-activates="dropdownTest"><i
-                            class="material-icons">more_vert</i></a></li>
+                    <li><a id="menu" class="dropdown-button" href="#" data-activates="dropdownTest">
+                        <i class="material-icons">more_vert</i></a>
+                    </li>
                 </ul>
             </div>
-            <div id="sidebar" class="side-nav" style="background-color:#AADCA8">
+            <div id="sidebar" class="side-nav" style="background-color:white">
                 <div id="navProfile">
                     <div style="padding:15px 0 0 15px"><img id="navProfilePic"/></div>
                     <div id="navProfileName"></div>
                 </div>
-                <div class="divider"></div>
-                <ul>
+                <div class="divider" style="margin-top:0"></div>
+                <ul id="employeeSideNav">
                     <li><a id="jobHistory" href="#">Job History</a></li>
-                    <li><a href="#" id="switchViews">Change User</a></li>
+                </ul>
+                <ul id="employerSideNav" style="display:none;">
+                    <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
+                </ul>
+                <div class="divider" style="margin-top:0"></div>
+                <ul>
+                    <li><a href="#" id="switchViews">Change to employer</a></li>
                 </ul>
             </div>
 
@@ -67,8 +74,11 @@
         <h1>FULL JOB DETAILS GO HERE</h1>
     </div>
 </div>
-<div id="employerView" class="container">
-    <div id="offerPanel"></div>
+<div id="employerView" style="display:none;">
+    <div id="offerPanel">
+        <ul id="openJob" class="dropdown-content"><li><a href="#">Close</a></li></ul>
+        <ul id="closeJob" class="dropdown-content"><li><a href="#">Open</a></li></ul>
+    </div>
     <div id="singleOfferView"></div>
 </div>
 </body>

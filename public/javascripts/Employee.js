@@ -5,7 +5,7 @@
 var fakeUser = {
     name: "Donald Trump",
     profilePicture: "pictures/trump.jpg"
-}
+};
 
 var fakeData = {
     jobName: "BEST JOBEVER",
@@ -19,7 +19,7 @@ var employeeView;
 var jobList = [fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData];
 
 function createJobPanels() {
-    employeeView = $("#employeeView")[0]
+    employeeView = $("#employeeView")[0];
     jobList.forEach(createSingleJobPanel);
 }
 
@@ -48,7 +48,7 @@ function createSingleJobPanel(jobData, index) {
 
     //creating middle line
     var middleLine = document.createElement("div");
-    middleLine.classList = "panelRow";
+    middleLine.classList = "panelRow panelRowMiddle";
     //creating and adding employerName
     var employerName = document.createElement("div");
     employerName.classList = "panelEmployerName";
@@ -62,7 +62,7 @@ function createSingleJobPanel(jobData, index) {
 
     //creating bottom line
     var bottomLine = document.createElement("div");
-    bottomLine.classList = "panelRow";
+    bottomLine.classList = "panelRow panelRowBottom";
     //creating description
     var description = document.createElement("div");
     description.classList = "panelDescription";

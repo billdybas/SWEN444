@@ -26,26 +26,27 @@
 
 .panelJobName {
     float: left;
+    font-weight:bold;
     font-size: 16px;
 }
 
 .panelEmployerName {
     float: left;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .panelSalary {
     float: right;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .panelPostTime {
     float: right;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .panelDescription {
-    font-size: 14px;
+    font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -58,6 +59,14 @@
     width: 100%;
 }
 
+.panelRowMiddle{
+    margin-top:-5px;
+}
+
+.panelRowBottom{
+    margin-top:5px;
+    margin-bottom:5px;
+}
 #navProfilePic {
     width: 100px;
     border-radius: 50%;
@@ -68,9 +77,21 @@
     padding-left: 15px;
     font-size: 18px;
     margin: -20px 0 0 0;
+    color:black;
 }
 
 .offerDots{
     font-size:17px;
     float:right;
+}
+
+.offerOpenClosed{
+    float: right;
+    font-size: 14px;
+}
+
+.offerDropdown{
+    float:right;
+    font-size:14px;
+    padding-left:20px;
 }

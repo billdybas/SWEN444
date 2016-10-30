@@ -6,11 +6,17 @@ function switchViews(){
     if (currentView=="employee"){
         $("#employeeView")[0].style.display="None";
         $("#employerView")[0].style.display="Block";
+        $("#employeeSideNav")[0].style.display="None";
+        $("#employerSideNav")[0].style.display="Block";
+        $("#switchViews")[0].innerHTML="Change to employee";
         currentView="employer";
     }
     else{
         $("#employerView")[0].style.display="None";
         $("#employeeView")[0].style.display="Block";
+        $("#employerSideNav")[0].style.display="None";
+        $("#employeeSideNav")[0].style.display="Block";
+        $("#switchViews")[0].innerHTML="Change to employer";
         currentView="employee";
     }
 }
