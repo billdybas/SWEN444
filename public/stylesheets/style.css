@@ -95,3 +95,52 @@
     font-size:14px;
     padding-left:20px;
 }
+
+.bottomButton{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    padding:0 10px 10px 10px;
+}
+
+.fullSizeButton{
+    width:100%;
+    height:50px;
+    background-color:#7ECB7D;
+    border:none;
+    font-weight:bold;
+    font-size:16px;
+}
+.fullSizeButton:focus{
+    background:#7ECB7D;
+}
+
+#singleJobTitle{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+#singleJobEmployer{
+    font-size:16px;
+    margin-top:-10px;
+}
+
+#singleJobInfoArea{
+    padding:10px 15px 0 15px;
+}
+
+#successOverlay{
+    width:100%;
+    height:100%;
+    background-color:rgba(86,86,86,0.7);
+    position:absolute;
+    z-index:999;
+}
+
+#successContainer{
+    width:70%;
+    height:35%;
+    margin-left:15%;
+    background-color:white;
+
+}

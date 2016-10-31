@@ -9,15 +9,27 @@ var fakeData = {
     postTime: "5 hours ago",
     salary: "5",
     isOpen:true,
-    numApps:"2"
+    numApps:0,
+    applicants:[]
+};
+
+var otherData = {
+    jobName: "BEST JOBEVER",
+    employerName: "Employer Name",
+    description: "These are the deatils for the best job ever.  It's the best job you'll ever get.  Let me tell you, nobody knows jobs like I do.  I know all of the best jobs and the best places to get jobs.  And that's why I should be president of the United States.  And I'll stop ISIS.  If she could do that, She would've done it.  But she didn't.  And everybody should use TEMPiN.",
+    postTime: "5 hours ago",
+    salary: "5",
+    isOpen:true,
+    numApps:0,
+    applicants:[]
 };
 
 var employerView;
-var jobList = [fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData];
+var offerList = [fakeData, otherData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData];
 
 function createOfferPanels() {
     employerView = $("#employeeView")[0];
-    jobList.forEach(createSingleOffer);
+    offerList.forEach(createSingleOffer);
 }
 
 function createSingleOffer(data,index){

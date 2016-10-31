@@ -22,6 +22,12 @@
 </head>
 
 <body>
+<div id="successOverlay" style="display:none;" class="valign-wrapper">
+    <div class="valign center-align" id="successContainer">
+        <i class="material-icons" style="font-size:180px">check_circle</i>
+        <div>Success!</div>
+    </div>
+</div>
 <div class="navbar-fixed">
     <ul id="dropdownTest" class="dropdown-content">
         <li><a href="#!">test</a></li>
@@ -30,10 +36,12 @@
     </ul>
     <nav style="background-color:#7ECB7D">
         <div class="nav-wrapper">
-            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px"><i
-                    class="material-icons">menu</i></a>
-            <a id="backButton" href="#" style="padding-left:15px; display:none;"><i
-                    class="material-icons">arrow_back</i></a>
+            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px">
+                <i class="material-icons">menu</i>
+            </a>
+            <a id="backButton" href="#" style="padding-left:15px; display:none;">
+                <i class="material-icons">arrow_back</i>
+            </a>
             <a href="#" class="brand-logo">TEMPiN</a>
             <div id="rightNav">
                 <ul class="right">
@@ -54,7 +62,8 @@
                     <li><a id="jobHistory" href="#">Job History</a></li>
                 </ul>
                 <ul id="employerSideNav" style="display:none;">
-                    <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
+                    <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job
+                        Posting</a></li>
                 </ul>
                 <div class="divider" style="margin-top:0"></div>
                 <ul>
@@ -71,13 +80,34 @@
 
     </div>
     <div id="singleJobView" style="display:none;">
-        <h1>FULL JOB DETAILS GO HERE</h1>
+        <div id="singleJobInfoArea">
+            <div class="panelRow">
+                <div id="singleJobTitle" class="left"></div>
+                <div id="singleJobPay" class="right"></div>
+            </div>
+            <div class="panelRow">
+                <div id="singleJobEmployer"></div>
+            </div>
+            <div>
+                <div id="singleJobTime"></div>
+                <div id="singleJobDistance"></div>
+                <div id="singleJobDuration"></div>
+            </div>
+            <div id="singleJobDescription" class="panelRow" style="white-space:pre-wrap;"></div>
+        </div>
+        <div class="bottomButton">
+            <button id="applyButton" class="fullSizeButton">Apply</button>
+        </div>
     </div>
 </div>
 <div id="employerView" style="display:none;">
     <div id="offerPanel">
-        <ul id="openJob" class="dropdown-content"><li><a href="#">Close</a></li></ul>
-        <ul id="closeJob" class="dropdown-content"><li><a href="#">Open</a></li></ul>
+        <ul id="openJob" class="dropdown-content">
+            <li><a href="#">Close</a></li>
+        </ul>
+        <ul id="closeJob" class="dropdown-content">
+            <li><a href="#">Open</a></li>
+        </ul>
     </div>
     <div id="singleOfferView"></div>
 </div>
