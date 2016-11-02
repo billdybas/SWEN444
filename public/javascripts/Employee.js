@@ -12,7 +12,9 @@ var fakeData = {
     employerName: "Employer Name",
     description: "These are the deatils for the best job ever.  It's the best job you'll ever get.  Let me tell you, nobody knows jobs like I do.  I know all of the best jobs and the best places to get jobs.  And that's why I should be president of the United States.  And I'll stop ISIS.  If she could do that, She would've done it.  But she didn't.  And everybody should use TEMPiN.",
     postTime: "5 hours ago",
-    salary: "5"
+    salary: "5",
+    distance:"1.2 Miles",
+    duration:"3 Hours"
 };
 
 var employeeView;
@@ -86,6 +88,17 @@ function createSingleJobPanel(jobData, index) {
 }
 
 function showSingleJob(index) {
+    var jobInfo=jobList[index];
+    $("#singleJobTitle")[0].innerHTML=jobInfo.jobName;
+    $("#singleJobPay")[0].innerHTML="$"+jobInfo.salary+"/hr";
+    $("#singleJobEmployer")[0].innerHTML=jobInfo.employerName;
+    $("#singleJobDistance")[0].innerHTML="<b>Distance: </b>"+jobInfo.distance;
+    $("#singleJobDuration")[0].innerHTML="<b>Duration: </b>"+jobInfo.duration;
+    $("#singleJobTime")[0].innerHTML="<b>Posted: </b>"+jobInfo.postTime;
+    $("#singleJobDescription")[0].innerHTML="<b>Description: </b>\n"+jobInfo.description;
+    $("#applyButton").one('click touch',function(){
+        applyToJob(fakeUser,index);
+    });
     $("#panelView")[0].style.display = "none";
     $("#singleJobView")[0].style.display = "block";
     showBackButton();
@@ -98,4 +111,13 @@ function showPanels() {
     $("#singleJobView")[0].style.display = "none";
     $("#panelView")[0].style.display = "block";
     showHamburger()
+}
+
+function applySuccess(){
+    $("#backButton").off("click touch");
+    $("#successOverlay")[0].style.display="flex";
+    setTimeout(function(){
+        showPanels();
+        $("#successOverlay")[0].style.display="none";
+    },2000);
 }
