@@ -100,3 +100,18 @@ function createSingleOffer(data,index){
 function showSingleOffer(index){
     console.log(index);
 }
+
+function showCreateJob(){
+    $("#offerPanel")[0].style.display="none";
+    $("#createJob")[0].style.display="block";
+    showBackButton();
+    $("#backButton").one("click touch", function () {
+        showOffers()
+    });
+}
+
+function showOffers() {
+    $("#createJob")[0].style.display = "none";
+    $("#offerPanel")[0].style.display = "block";
+    showHamburger()
+}

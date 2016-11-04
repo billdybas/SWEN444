@@ -18,6 +18,8 @@ function switchViews(){
         currentView="employee";
     }
     else if (currentView=="employee"){
+        $("#offerPanel")[0].innerHTML="";
+        createOfferPanels();
         $("#employeeView")[0].style.display="None";
         $("#employerView")[0].style.display="Block";
         $("#employeeSideNav")[0].style.display="None";
@@ -25,7 +27,9 @@ function switchViews(){
         $("#switchViews")[0].innerHTML="Change to employee";
         currentView="employer";
     }
-    else if (currentView=="employer") {
+    else if (currentView=="employer"){
+        $("#panelView")[0].innerHTML="";
+        createJobPanels();
         $("#employerView")[0].style.display="None";
         $("#employeeView")[0].style.display="Block";
         $("#employerSideNav")[0].style.display="None";
@@ -43,4 +47,10 @@ function showHamburger(){
 function showBackButton(){
     $("#hamburger")[0].style.display="None";
     $("#backButton")[0].style.display="Block";
+}
+
+function applyToJob(userInfo,jobIndex){
+    offerList[jobIndex].applicants.push(userInfo);
+    offerList[jobIndex].numApps+=1;
+    applySuccess();
 }
