@@ -103,7 +103,7 @@ function showSingleJob(index) {
     $("#singleJobView")[0].style.display = "block";
     showBackButton();
     $("#backButton").one("click touch", function () {
-        showPanels()
+        showPanels();
     });
 }
 
@@ -113,11 +113,8 @@ function showPanels() {
     showHamburger()
 }
 
-function applySuccess(){
-    $("#backButton").off("click touch");
-    $("#successOverlay")[0].style.display="flex";
-    setTimeout(function(){
-        showPanels();
-        $("#successOverlay")[0].style.display="none";
-    },2000);
+function applyToJob(userInfo,jobIndex){
+    offerList[jobIndex].applicants.push(userInfo);
+    offerList[jobIndex].numApps+=1;
+    applySuccess(showPanels);
 }

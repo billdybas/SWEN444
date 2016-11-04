@@ -49,8 +49,12 @@ function showBackButton(){
     $("#backButton")[0].style.display="Block";
 }
 
-function applyToJob(userInfo,jobIndex){
-    offerList[jobIndex].applicants.push(userInfo);
-    offerList[jobIndex].numApps+=1;
-    applySuccess();
+
+function applySuccess(returnPage){
+    $("#backButton").off("click touch");
+    $("#successOverlay")[0].style.display="flex";
+    setTimeout(function(){
+        returnPage();
+        $("#successOverlay")[0].style.display="none";
+    },1300);
 }

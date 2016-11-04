@@ -1,3 +1,6 @@
+body{
+    background-color:#f5f5f5;
+}
 #employeeView, #employerView {
     width: 100%;
     overflow-y: scroll;
@@ -34,7 +37,7 @@
 
 .panelJobName {
     float: left;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 16px;
 }
 
@@ -67,14 +70,15 @@
     width: 100%;
 }
 
-.panelRowMiddle{
-    margin-top:-5px;
+.panelRowMiddle {
+    margin-top: -5px;
 }
 
-.panelRowBottom{
-    margin-top:5px;
-    margin-bottom:5px;
+.panelRowBottom {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
 #navProfilePic {
     width: 100px;
     border-radius: 50%;
@@ -85,74 +89,73 @@
     padding-left: 15px;
     font-size: 18px;
     margin: -20px 0 0 0;
-    color:black;
+    color: black;
 }
 
-.offerDots{
-    font-size:17px;
-    float:right;
+.offerDots {
+    float: right;
+    font-size: 20px;
 }
 
-.offerOpenClosed{
+.offerOpenClosed {
+    float: right;
+}
+
+.offerDropdown {
     float: right;
     font-size: 14px;
+    padding-left: 5px;
 }
 
-.offerDropdown{
-    float:right;
-    font-size:14px;
-    padding-left:20px;
+.bottomButton {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0 10px 10px 10px;
 }
 
-.bottomButton{
-    position:fixed;
-    bottom:0;
-    width:100%;
-    padding:0 10px 10px 10px;
+.fullSizeButton {
+    width: 100%;
+    height: 50px;
+    background-color: #7ECB7D;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
 }
 
-.fullSizeButton{
-    width:100%;
-    height:50px;
-    background-color:#7ECB7D;
-    border:none;
-    font-weight:bold;
-    font-size:16px;
-}
-.fullSizeButton:focus{
-    background:#7ECB7D;
+.fullSizeButton:focus {
+    background: #7ECB7D;
 }
 
-#singleJobTitle{
+#singleJobTitle {
     font-size: 18px;
-    font-weight:bold;
+    font-weight: bold;
 }
 
-#singleJobEmployer{
-    font-size:16px;
-    margin-top:-10px;
+#singleJobEmployer {
+    font-size: 16px;
+    margin-top: -10px;
 }
 
-#singleJobInfoArea{
-    padding:10px 15px 0 15px;
+#singleJobInfoArea {
+    padding: 10px 15px 0 15px;
 }
 
-#successOverlay{
-    width:100%;
-    height:100%;
-    background-color:rgba(86,86,86,0.7);
-    position:absolute;
-    z-index:999;
+#successOverlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(86, 86, 86, 0.7);
+    position: absolute;
+    z-index: 999;
 }
 
-#successContainer{
-    width:70%;
-    height:35%;
-    margin-left:15%;
-    background-color:white;
+#successContainer {
+    width: 70%;
+    height: 35%;
+    margin-left: 15%;
+    background-color: white;
 
 }
-
 
 .box {
     font-size: 18px;
@@ -162,18 +165,50 @@
     margin: 25px;
 }
 
-#reviewArea{
-    font-size:14pt;
-    height:200px;
-    width:90%;
-    margin-left:5%;
+#reviewArea {
+    font-size: 14pt;
+    height: 200px;
+    width: 90%;
+    margin-left: 5%;
     text-align: left;
-
-
     border: 1px solid black;
 }
 
-.face{border:solid 1px; margin:10px;}
-.selected{
-    box-shadow:0px 12px 22px 1px #333;
+.face {
+    border: solid 1px;
+    margin: 10px;
+}
+
+.selected {
+    box-shadow: 0px 12px 22px 1px #333;
+}
+
+#createJob, #reviewNewJob{
+    width:90%;
+    margin-top:10px;
+    margin-left:5%;
+    margin-right:5%;
+    color:grey;
+}
+
+.inputField{
+    color:rgba(0, 0, 0, 0.87);
+}
+
+#newJobButtonBar, #reviewJobButtonBar{
+    width:90%;
+    position:fixed;
+    bottom:0;
+    padding-bottom:5px;
+}
+
+.offerEmployerName {
+    float: left;
+    font-size: 14px;
+}
+
+#singleOfferView{
+    width:90%;
+    margin-left:5%;
+    margin-top:10px;
 }

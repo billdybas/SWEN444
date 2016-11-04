@@ -31,9 +31,10 @@
 </div>
 <div class="navbar-fixed">
     <ul id="dropdownTest" class="dropdown-content">
-        <li><a href="/review.html">test</a></li>
-        <li><a href="/index.html">test2</a></li>
-        <li><a href="#!">test3</a></li>
+        <li><a href="/review.html">Review</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="#">View on Map</a></li>
+        <li><a href="#">Filter Results</a></li>
     </ul>
     <nav style="background-color:#7ECB7D">
         <div class="nav-wrapper">
@@ -101,22 +102,49 @@
     </div>
 </div>
 <div id="employerView" style="display:none;">
+    <ul id="offerDropdown" class="dropdown-content">
+        <li><a id="openClose" href="#">Close</a></li>
+    </ul>
     <div id="offerPanel">
         <ul id="openJob" class="dropdown-content"><li><a href="#">Close</a></li></ul>
         <ul id="closeJob" class="dropdown-content"><li><a href="#">Open</a></li></ul>
     </div>
-    <div id="singleOfferView"></div>
-    <div id="createJob">
-        Job Title: <input type="text" name="newJobName"><br>
-        Location: <input type="text" name="newJobName"><br>
-        Responsibilities: <input type="text" name="newJobName"><br>
-        Qualifications: <input type="text" name="newJobName"><br>
-        Start/End Dates: <input type="text" name="newJobName"><br>
-        <input type="text" name="newJobName"><br>
-        Pay Rate: <input type="text" name="newJobName"><br>
-        <button type="button" style="width:50%; float:left;">Cancel</button>
-        <button type="button" style="width:50%; float:left;">Review</button>
+    <div id="singleOfferView" style="display:none; ">
+        Job Title:<br><div id="singleOfferTitle"></div><br>
+        Posted:<br><div id="singleOfferPosted"></div><br>
+        Location:<br><div id="singleOfferLocation"></div><br>
+        Responsibilities:<br><div id="singleOfferResponsibilities"></div><br>
+        Description:<br><div id="singleOfferDescription"></div><br>
+        Date Range:<br><div id="singleOfferTiming"></div><br>
+        Pay Rate:<br><div id="singleOfferPayRate"></div>
     </div>
+    <div id="createJob" style="display:none">
+        Job Title <input type="text" id="newJobName" class="inputField"><br>
+        Location <input type="text" id="newJobLocation" class="inputField"><br>
+        Description <input type="text" id="newJobDescription" class="inputField"><br>
+        Responsibilities <input type="text" id="newJobResponsibilities" class="inputField"><br>
+        Start/End Dates <br>
+        <input type="date" id="newJobStartDate" class="inputField" style="float:left;width:48%;margin-right:2%;">
+        <input type="date" id="newJobEndDate" class="inputField" style="float:left;width:48%;margin-left:2%;"><br>
+        Pay Rate <input type="text" id="newJobPay" class="inputField"><br>
+        <div id="newJobButtonBar">
+            <button id="cancelCreateJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn">Cancel</button>
+            <button id="reviewCreateJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn">Review</button>
+        </div>
+    </div>
+    <div id="reviewNewJob" style="display:none; font-size:16px; color:rgba(0, 0, 0, 0.87);">
+        Job Title:<br><div id="reviewJobTitle"></div><br>
+        Location:<br><div id="reviewJobLocation"></div><br>
+        Description:<br><div id="reviewJobDescription"></div><br>
+        Responsibilities:<br><div id="reviewJobResponsibilities"></div><br>
+        Date Range:<br><div id="reviewJobTiming"></div><br>
+        Pay Rate:<br><div id="reviewJobPayRate"></div>
+        <div id="reviewJobButtonBar">
+            <button id="cancelReviewJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn">Back</button>
+            <button id="submitReviewJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn">Submit</button>
+        </div>
+    </div>
+    <div id="offerApplicants"></div>
 </div>
 <div id="loginView">
     <div id="loginCenter">
@@ -126,7 +154,7 @@
         <br>
         <br>
         <a class="waves-effect waves-light btn" onclick="switchViews()"><i class="material-icons left">perm_identity</i>Login</a>
-        <p>Don't have and account?</p>
+        <p>Don't have an account?</p>
         <a class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Register</a>
     </div>
 </div>
@@ -146,6 +174,21 @@
     $("#postNewJob").on("click touch",function(){
         showCreateJob();
     });
+    $("#cancelCreateJob").on("click touch", function(){
+        $("#backButton").off("click touch");
+        showOffers();
+    });
+    $("#reviewCreateJob").on("click touch",function(){
+        showReviewNewJob();
+    });
+    $("#cancelReviewJob").on("click touch",function(){
+        $("#backButton").off("click touch");
+        showCreateJob();
+    });
+    $("#submitReviewJob").on("click touch",function(){
+        submitNewJob();
+    });
+
 });
 </script>
 </html>
