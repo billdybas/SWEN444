@@ -98,7 +98,7 @@
             <div id="singleJobDescription" class="panelRow" style="white-space:pre-wrap;"></div>
         </div>
         <div class="bottomButton">
-            <button id="applyButton" class="fullSizeButton">Apply</button>
+            <a class="waves-effect waves-light btn" id="applyButton" style="width: 100%"><i class="material-icons left">done</i>Apply</a>
         </div>
     </div>
 
@@ -121,8 +121,8 @@
             <div id="singleReviewStatus" class="panelRow" style="white-space:pre-wrap;"></div>
         </div>
         <div class="bottomButton" style="text-align: center">
-            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
             <button id="cancelButton" class="waves-effect waves-light btn" style="background-color: red">Back</button>
+            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
         </div>
     </div>
 
@@ -142,9 +142,8 @@
             <br><br>
 
             <div style="text-align: center">
-                <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
-
                 <a class="waves-effect waves-light btn" style="background-color: red" onclick="showHistoryPanels()"><i class="material-icons left">cancel</i>Cancel</a>
+                <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
             </div>
         </div>
     </div>
