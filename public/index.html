@@ -61,7 +61,8 @@
                 </div>
                 <div class="divider" style="margin-top:0"></div>
                 <ul id="employeeSideNav">
-                    <li><a id="jobHistory" href="#">Job History</a></li>
+                    <li><a id="jobHistory" href="#" onclick="showHistory()">Job History</a></li>
+                    <li><a id="jobList" onclick="showJobs()">Job List</a></li>
                 </ul>
                 <ul id="employerSideNav" style="display:none;">
                     <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
@@ -100,6 +101,54 @@
             <button id="applyButton" class="fullSizeButton">Apply</button>
         </div>
     </div>
+
+    <div id="singleHistoryView" style="display:none;">
+        <div id="singleHistoryArea">
+            <div class="panelRow">
+                <div id="singleHistoryTitle" class="left"></div>
+                <div id="singleHistoryPay" class="right"></div>
+            </div>
+            <div class="panelRow">
+                <div id="singleHistoryEmployer"></div>
+            </div>
+            <div>
+                <div id="singleHistoryTime"></div>
+                <div id="singleHistoryDistance"></div>
+                <div id="singleHistoryDuration"></div>
+            </div>
+            <div id="singleHistoryDescription" class="panelRow" style="white-space:pre-wrap;"></div>
+
+            <div id="singleReviewStatus" class="panelRow" style="white-space:pre-wrap;"></div>
+        </div>
+        <div class="bottomButton" style="text-align: center">
+            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
+            <button id="cancelButton" class="waves-effect waves-light btn" style="background-color: red">Back</button>
+        </div>
+    </div>
+
+    <div id="reviewView" style="display:none;">
+        <div class="box">Reviewing <span id="employer"></span></div>
+        <div>
+            <form>
+                <textarea id="reviewArea"></textarea>
+            </form>
+            <div style="text-align: center">
+                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_dissatisfied</i></a>
+                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_dissatisfied</i></a>
+                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_neutral</i></a>
+                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_satisfied</i></a>
+                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_satisfied</i></a>
+            </div>
+            <br><br>
+
+            <div style="text-align: center">
+                <a class="waves-effect waves-light btn" style="background-color: greenyellow"><i class="material-icons left">check_circle</i>Submit</a>
+
+                <a class="waves-effect waves-light btn" style="background-color: red"><i class="material-icons left">cancel</i>Cancel</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div id="employerView" style="display:none;">
     <ul id="offerDropdown" class="dropdown-content">

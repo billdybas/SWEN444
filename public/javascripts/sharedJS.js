@@ -58,3 +58,14 @@ function applySuccess(returnPage){
         $("#successOverlay")[0].style.display="none";
     },1300);
 }
+
+function showJobs(){
+    $("#panelView")[0].innerHTML="";
+    createJobPanels();
+    $("#employerView")[0].style.display="None";
+    $("#employeeView")[0].style.display="Block";
+    $("#employerSideNav")[0].style.display="None";
+    $("#employeeSideNav")[0].style.display="Block";
+    $("#switchViews")[0].innerHTML="Change to employer";
+    currentView="employee";
+}

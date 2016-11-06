@@ -7,3 +7,8 @@ function highlightFace() {
         $(this).addClass('selected');
     });
 }
+
+function reviewing(index){
+    var jobInfo=jobHistory[index];
+    $("#employer")[0].innerHTML=jobInfo.employerName;
+}
