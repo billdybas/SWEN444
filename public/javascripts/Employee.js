@@ -210,7 +210,7 @@ function showSingleHistory(index) {
     $("#singleHistoryTime")[0].innerHTML="<b>Posted: </b>"+jobInfo.postTime;
     $("#singleHistoryDescription")[0].innerHTML="<b>Description: </b>\n"+jobInfo.description;
 
-    $("#singleReviewStatus")[0].innerHTML="<b>Review Status: ";
+    $("#singleReviewStatus")[0].innerHTML="<b>Review Status: </b>\n" + review;
     $("#reviewButton").one('click touch',function(){
         reviewing(index);
     });
@@ -225,6 +225,7 @@ function showSingleHistory(index) {
     });
 }
 function showHistoryPanels() {
+    $("#reviewView")[0].style.display = "none";
     $("#singleHistoryView")[0].style.display = "none";
     $("#panelView")[0].style.display = "block";
     showHamburger()
