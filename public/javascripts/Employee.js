@@ -2,9 +2,8 @@
  * Created by Brandon on 10/26/2016.
  */
 
-var fakeUser = {
-    name: "Donald Trump",
-    profilePicture: "pictures/trump.jpg"
+var skill = {
+    skillName : "Intimidation"
 };
 
 var fakeData = {
@@ -17,8 +16,94 @@ var fakeData = {
     duration:"3 Hours"
 };
 
+var fakeUser = {
+    name: "Donald Trump",
+    profilePicture: "pictures/trump.jpg",
+    location: "Anywhere but the White House",
+    jobs: [fakeData,fakeData,fakeData],
+    skills: [skill, skill,skill],
+    rating: 0.8
+};
+
 var employeeView;
 var jobList = [fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData];
+
+function createProfilePage(){
+    $("#profileName")[0].innerHTML = "<h4>" + fakeUser.name + "</h4>";
+    $("#profileLoc")[0].innerHTML = "<b>" + fakeUser.location + "</b>";
+    $("#profilePic")[0].innerHTML = "<img src=" + fakeUser.profilePicture + " id='navProfilePic' >";
+
+    $("#profileSkills")[0].innerHTML = "<h5>Skills: </h5>" + fakeUser.skills.reduce(function(acc, skill) {
+            return acc + skill.skillName + "<br>";
+        }, "");
+
+    $("#profileJobs")[0].innerHTML = "<h5>Prior Jobs: </h5>" + fakeUser.jobs.reduce(function(acc, job) {
+            var text = "<div onclick='showSingleJob(0)' style=\"color:#357e35\"><b>" + job.jobName + "</b></div>" + "<b>Employer : </b>" + job.employerName + "<br><b>Description : </b>" + job.description + "<br><br>"
+            return acc + text;
+        }, "");
+
+    $("#profileEditBtn")[0].innerHTML = "<div id='editBtn' style='position:fixed; bottom:5%; right:0;width:45%;height:5%' class='waves-effect waves-light btn' onclick='createEditProfilePage()'>Edit Profile</div>";
+
+    $("#profileAddJobBtn")[0].innerHTML = "";
+
+    $("#panelView")[0].style.display = "none";
+    $("#singleJobView")[0].style.display = "none";
+    $("#profilePane")[0].style.display = "block";
+    $("#addJobPane")[0].style.display = "none";
+
+    showBackButton();
+    $("#backButton").one("click touch", function () {
+        showPanels()
+    });
+}
+
+function createEditProfilePage(){
+    $("#profileName")[0].innerHTML = "<h4>" + fakeUser.name + "</h4>";
+    $("#profileLoc")[0].innerHTML = "<b>" + fakeUser.location + "</b>";
+    $("#profilePic")[0].innerHTML = "<img src=" + fakeUser.profilePicture + " id='navProfilePic' >";
+
+
+    //TODO: Space AddSkill propperly
+    //TODO: Create AddSkill dialog
+    //TODO: Remove Skill when skill clicked
+    $("#profileSkills")[0].innerHTML = "<h5>Skills: </h5>" + fakeUser.skills.reduce(function(acc, skill) {
+            return acc + "<div id='skillTag' class='waves-effect waves-light btn' onclick=''>" + skill.skillName + "  <i class='material-icons'>clear</i></div>" + "<br>";
+        }, "") + "<div id='skillTag' class='waves-effect waves-light btn' onclick=''>  Add Skill  </div>" + "<br>";
+
+    $("#profileJobs")[0].innerHTML = "<h5>Prior Jobs: </h5>" + fakeUser.jobs.reduce(function(acc, job) {
+            var text = "<div onclick='showSingleJob(0)' style='color:#357e35'><b>" + job.jobName + "</b></div>" + "<b>Employer : </b>" + job.employerName + "<br><b>Description : </b>" + job.description + "<br><br>"
+            return acc + text;
+        }, "");
+
+    $("#profileEditBtn")[0].innerHTML = "<div id='editBtn' style='position:fixed; bottom:5%; right:0;width:30%;height:5%' class='waves-effect waves-light btn' onclick='createProfilePage()'>Confirm</div>";
+
+    //TODO: Create AddJobPage
+    $("#profileAddJobBtn")[0].innerHTML = "<div id='editBtn' class='waves-effect waves-light btn' onclick='createAddJobPage()'>Add Job</div><br><br>";
+
+    $("#panelView")[0].style.display = "none";
+    $("#singleJobView")[0].style.display = "none";
+    $("#profilePane")[0].style.display = "block";
+    $("#addJobPane")[0].style.display = "none";
+
+    showBackButton();
+    $("#backButton").one("click touch", function () {
+        showPanels()
+    });
+}
+
+//TODO: Get page to actually show up
+function createAddJobPage(){
+    $("#jobName")[0].innerHTML = "<input type='text'>Job Name</input>";
+    $("#jobEmployerContact")[0].innerHTML = "<input type='text'>Employer Contact Info (Name, phone number, email, etc)</input>";
+    $("#jobDescription")[0].innerHTML = "<input type='text'>Job Description</input>";
+    $("#jobConfirmBtn")[0].innerHTML = "<div id='editBtn' class='waves-effect waves-light btn' onclick='createEditProfilePage()'>Confirm</div><br><br>";
+
+    $("#panelView")[0].style.display = "none";
+    $("#singleJobView")[0].style.display = "none";
+    $("#profilePane")[0].style.display = "none";
+    $("#addJobPane")[0].style.display = "block";
+}
+
 
 function createJobPanels() {
     employeeView = $("#employeeView")[0];
@@ -101,6 +186,7 @@ function showSingleJob(index) {
     });
     $("#panelView")[0].style.display = "none";
     $("#singleJobView")[0].style.display = "block";
+    $("#profilePane")[0].style.display = "none";
     showBackButton();
     $("#backButton").one("click touch", function () {
         showPanels()
@@ -110,6 +196,7 @@ function showSingleJob(index) {
 function showPanels() {
     $("#singleJobView")[0].style.display = "none";
     $("#panelView")[0].style.display = "block";
+    $("#profilePane")[0].style.display = "none";
     showHamburger()
 }
 
