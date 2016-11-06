@@ -15,11 +15,9 @@
     <!--import Materialize JS-->
     <script type="text/javascript" src="/materialize/js/materialize.js"></script>
     <!--import our JS-->
+    <script type="text/javascript" src="/javascripts/shared.js"></script>
     <script type="text/javascript" src="/javascripts/Employee.js"></script>
     <script type="text/javascript" src="/javascripts/Employer.js"></script>
-    <script type="text/javascript" src="/javascripts/sharedJS.js"></script>
-    <script type="text/javascript" src="/javascripts/review.js"></script>
-
 </head>
 
 <body>
@@ -69,7 +67,7 @@
                 </ul>
                 <div class="divider" style="margin-top:0"></div>
                 <ul>
-                    <li><a href="#" id="switchViews">Change to employer</a></li>
+                    <li><a href="#" id="switchViews">Change to Employer</a></li>
                 </ul>
             </div>
 
@@ -143,7 +141,6 @@
 
             <div style="text-align: center">
                 <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
-
                 <a class="waves-effect waves-light btn" style="background-color: red" onclick="showHistoryPanels()"><i class="material-icons left">cancel</i>Cancel</a>
             </div>
         </div>
@@ -209,7 +206,8 @@
 </div>
 </body>
 
-<script type="text/javascript">$(document).ready(function () {
+<script type="text/javascript">
+$(document).ready(function () {
     $(".button-collapse").sideNav({
         closeOnClick: true
     });
@@ -218,8 +216,9 @@
     });
     createJobPanels();
     createOfferPanels();
-    $("#navProfilePic")[0].src = fakeUser.profilePicture;
-    $("#navProfileName")[0].innerHTML = fakeUser.name;
+
+    $("#navProfilePic")[0].src = state.user.profilePicture;
+    $("#navProfileName").html(state.user.name);
     $("#postNewJob").on("click touch",function(){
         showCreateJob();
     });
@@ -237,8 +236,6 @@
     $("#submitReviewJob").on("click touch",function(){
         submitNewJob();
     });
-
 });
 </script>
 </html>
-
