@@ -1,9 +1,23 @@
 /**
  * Created by Brandon on 10/26/2016.
  */
-var currentView="employee";
+var currentView="login";
 function switchViews(){
-    if (currentView=="employee"){
+    if (currentView=="login") {
+        $("#employerView")[0].style.display="None";
+        $("#employeeView")[0].style.display="Block";
+        $("#employerSideNav")[0].style.display="None";
+        $("#employeeSideNav")[0].style.display="Block";
+
+        $("#hamburger")[0].style.display="Block";
+        $("#search")[0].style.display="Block";
+        $("#menu")[0].style.display="Block";
+        $("#loginView")[0].style.display="None";
+
+        $("#switchViews")[0].innerHTML="Change to employer";
+        currentView="employee";
+    }
+    else if (currentView=="employee"){
         $("#offerPanel")[0].innerHTML="";
         createOfferPanels();
         $("#employeeView")[0].style.display="None";
@@ -13,7 +27,7 @@ function switchViews(){
         $("#switchViews")[0].innerHTML="Change to employee";
         currentView="employer";
     }
-    else{
+    else if (currentView=="employer"){
         $("#panelView")[0].innerHTML="";
         createJobPanels();
         $("#employerView")[0].style.display="None";
@@ -21,7 +35,6 @@ function switchViews(){
         $("#employerSideNav")[0].style.display="None";
         $("#employeeSideNav")[0].style.display="Block";
         $("#switchViews")[0].innerHTML="Change to employer";
-
         currentView="employee";
     }
 }
@@ -36,8 +49,23 @@ function showBackButton(){
     $("#backButton")[0].style.display="Block";
 }
 
-function applyToJob(userInfo,jobIndex){
-    offerList[jobIndex].applicants.push(userInfo);
-    offerList[jobIndex].numApps+=1;
-    applySuccess();
+
+function applySuccess(returnPage){
+    $("#backButton").off("click touch");
+    $("#successOverlay")[0].style.display="flex";
+    setTimeout(function(){
+        returnPage();
+        $("#successOverlay")[0].style.display="none";
+    },1300);
+}
+
+function showJobs(){
+    $("#panelView")[0].innerHTML="";
+    createJobPanels();
+    $("#employerView")[0].style.display="None";
+    $("#employeeView")[0].style.display="Block";
+    $("#employerSideNav")[0].style.display="None";
+    $("#employeeSideNav")[0].style.display="Block";
+    $("#switchViews")[0].innerHTML="Change to employer";
+    currentView="employee";
 }

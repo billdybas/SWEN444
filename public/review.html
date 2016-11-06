@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8"/>
+    <title>TEMPiN</title>
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection"/>
+    <!--Import our css-->
+    <link type="text/css" rel="stylesheet" href="stylesheets/style.css" media="screen,projection"/>
+    <!--Import JQuery-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <!--import Materialize JS-->
+    <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+    <!--import our JS-->
+    <script type="text/javascript" src="/javascripts/Employee.js"></script>
+    <script type="text/javascript" src="/javascripts/Employer.js"></script>
+    <script type="text/javascript" src="/javascripts/sharedJS.js"></script>
+    <script type="text/javascript" src="/javascripts/review.js"></script>
+</head>
+<body>
+<div class="navbar-fixed">
+    <ul id="dropdownTest" class="dropdown-content">
+        <li><a href="/review.html">test</a></li>
+        <li><a href="/index.html">test2</a></li>
+        <li><a href="#!">test3</a></li>
+    </ul>
+    <nav style="background-color:#7ECB7D">
+        <div class="nav-wrapper">
+            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px;display:none"><i
+                    class="material-icons">menu</i></a>
+            <a id="backButton" href="#" style="padding-left:15px; display:none;"><i
+                    class="material-icons">arrow_back</i></a>
+            <a href="#" class="brand-logo">TEMPiN</a>
+            <div id="rightNav">
+                <ul class="right">
+                    <li><a id="search" style="padding-right:0; padding-left:30px; display:none"><i class="material-icons">search</i></a>
+                    </li>
+                    <li><a id="menu" class="dropdown-button" href="#" data-activates="dropdownTest" style="display:none">
+                        <i class="material-icons">more_vert</i></a>
+                    </li>
+                </ul>
+            </div>
+            <div id="sidebar" class="side-nav" style="background-color:white">
+                <div id="navProfile">
+                    <div style="padding:15px 0 0 15px"><img id="navProfilePic"/></div>
+                    <div id="navProfileName"></div>
+                </div>
+                <div class="divider" style="margin-top:0"></div>
+                <ul id="employeeSideNav">
+                    <li><a id="jobHistory" href="#">Job History</a></li>
+                </ul>
+                <ul id="employerSideNav" style="display:none;">
+                    <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
+                </ul>
+                <div class="divider" style="margin-top:0"></div>
+                <ul>
+                    <li><a href="#" id="switchViews">Change to employer</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
+<div id="reviewView">
+    <div class="box">Reviewing <span id="employer"></span></div>
+    <div>
+        <form>
+            <textarea id="reviewArea"></textarea>
+        </form>
+        <div style="text-align: center">
+            <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_dissatisfied</i></a>
+            <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_dissatisfied</i></a>
+            <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_neutral</i></a>
+            <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_satisfied</i></a>
+            <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_satisfied</i></a>
+        </div>
+        <br><br>
+
+        <div style="text-align: center">
+            <a class="waves-effect waves-light btn" style="background-color: greenyellow"><i class="material-icons left">check_circle</i>Submit</a>
+
+            <a class="waves-effect waves-light btn" style="background-color: red"><i class="material-icons left">cancel</i>Cancel</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
