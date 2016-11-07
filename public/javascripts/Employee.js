@@ -95,6 +95,12 @@ function createAddJobPage(){
     $("#addJobPane")[0].style.display = "block";
 }
 
+
+//////////////////
+// Job Listings //
+//////////////////
+
+// Creates all the individual list elements and adds click event on them
 function createJobPanels() {
   state.jobs.map(function(job) {
     $html = renderSingleJobPanel(job);
@@ -104,6 +110,7 @@ function createJobPanels() {
   });
 }
 
+// How an individual job panel should be rendered
 function renderSingleJobPanel(data) {
   return $('' +
     '<div class="jobPanel col s12">' +
@@ -122,11 +129,14 @@ function renderSingleJobPanel(data) {
     '<div class="divider" style="width: 100%;"></div>');
 }
 
+// How an individual job should be shown once it's list element has been clicked
 function showSingleJob(id) {
+  // Find the job that was clicked
   var job = state.jobs.filter(function(job) {
     return job.id === id;
   })[0];
 
+  // Update the HTML
   $('#singleJobTitle').html(job.name);
   $('#singleJobPay').html('$' + job.wage + ' / hr');
   $('#singleJobEmployer').html(job.employer);
@@ -139,7 +149,7 @@ function showSingleJob(id) {
   $('#singleJobView').css('display', 'block');
   $('#profilePane').css('display', 'none');
 
-  $('applyButton').one('click touch', function() {
+  $('#applyButton').one('click touch', function() {
     applyToJob(state.user, job);
   });
 
@@ -149,8 +159,8 @@ function showSingleJob(id) {
   });
 }
 
+// What happens when the 'Apply' button is clicked
 function applyToJob(user, job) {
-  // TODO: Make this work
   state.offers.map(function(offer) {
     if (offer.id === job.id) {
       offer.applicants.push(user);
@@ -175,7 +185,7 @@ function showHistory() {
   state.history.map(function(job) {
     $html = renderSingleJobPanel(job);
     $('#panelView').append($html.on('click touch', function() {
-      showSingleHistory(data.id);
+      showSingleHistory(job.id);
     }));
   });
 
@@ -184,8 +194,8 @@ function showHistory() {
 
 function showSingleHistory(id) {
   var job = state.jobs.filter(function(job) {
-    job.id === id;
-  });
+    return job.id === id;
+  })[0];
 
   $('#singleHistoryTitle').html(job.name);
   $('#singleHistoryPay').html('$' + job.wage + ' / hr');
