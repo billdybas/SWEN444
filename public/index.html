@@ -54,7 +54,7 @@
             </div>
             <div id="sidebar" class="side-nav" style="background-color:white">
                 <div id="navProfile">
-                    <div style="padding:15px 0 0 15px"><img id="navProfilePic"/></div>
+                    <div style="padding:15px 0 0 15px"><img id="navProfilePic" onclick="createProfilePage()"/></div>
                     <div id="navProfileName"></div>
                 </div>
                 <div class="divider" style="margin-top:0"></div>
@@ -96,7 +96,7 @@
             <div id="singleJobDescription" class="panelRow" style="white-space:pre-wrap;"></div>
         </div>
         <div class="bottomButton">
-            <button id="applyButton" class="fullSizeButton">Apply</button>
+            <a class="waves-effect waves-light btn" id="applyButton" style="width: 100%"><i class="material-icons left">done</i>Apply</a>
         </div>
     </div>
 
@@ -119,8 +119,8 @@
             <div id="singleReviewStatus" class="panelRow" style="white-space:pre-wrap;"></div>
         </div>
         <div class="bottomButton" style="text-align: center">
-            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
             <button id="cancelButton" class="waves-effect waves-light btn" style="background-color: red">Back</button>
+            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
         </div>
     </div>
 
@@ -140,8 +140,8 @@
             <br><br>
 
             <div style="text-align: center">
-                <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
                 <a class="waves-effect waves-light btn" style="background-color: red" onclick="showHistoryPanels()"><i class="material-icons left">cancel</i>Cancel</a>
+                <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
             </div>
         </div>
     </div>
@@ -204,6 +204,32 @@
         <a class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Register</a>
     </div>
 </div>
+
+<div id="employeeProfile">
+    <div id="profilePane" class="container" align="Center">
+        <div id="profileHeader" >
+            <div id="profileName"></div>
+            <div id="profileLoc"></div>
+            <div id="profilePic"></div>
+        </div>
+        <div id="profileContent" class="container" align="Left">
+            <div id="profileSkills"></div>
+            <div id="profileJobs"></div>
+        </div>
+        <div id="profileEditBtn"></div>
+        <div id="profileAddJobBtn"></div>
+    </div>
+    <div id="profileSkillAdd"></div>
+</div>
+<div id="addJobPage">
+    <div id="addJobPane" class="container" align="Center">
+        <div id="jobName"></div>
+        <div id="jobEmployerContact"></div>
+        <div id="jobDescription"></div>
+        <div id="jobConfirmBtn"></div>
+    </div>
+</div>
+
 </body>
 
 <script type="text/javascript">

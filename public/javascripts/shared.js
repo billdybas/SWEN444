@@ -165,7 +165,24 @@ state = {
   currentView: 'login',
   user: {
     name: 'Donald Trump',
-    profilePicture: 'pictures/trump.jpg'
+    profilePicture: 'pictures/trump.jpg',
+    location: 'Anywhere but the White House',
+    jobs: [
+      jobs[0],
+      jobs[1]
+    ],
+    skills: [
+      {
+        skillName: 'Intimidation'
+      },
+      {
+        skillName: 'Intimidation'
+      },
+      {
+        skillName: 'Intimidation'
+      }
+    ],
+    rating: 0.8
   },
   jobs: jobs,
   history: [],
