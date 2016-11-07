@@ -42,11 +42,6 @@ app.use('/users', users);
 ///Server/////////////////
 //////////////////////////
 
-var server = http.createServer(app);
-server.listen(3000, function() {
-    console.log("Node server running on http://localhost:3000!");
-});
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
