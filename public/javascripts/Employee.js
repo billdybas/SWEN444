@@ -1,70 +1,55 @@
-/**
- * Created by Brandon on 10/26/2016.
- */
+function createProfilePage() {
+  $('.button-collapse').sideNav('hide');
+  $('#profileName').html('<h4>' + state.user.name + '</h4>');
+  $('#profileLoc').html('<b>' + state.user.location + '</b>');
+  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic">');
 
-var skill = {
-    skillName : "Intimidation"
-};
+  $('#profileSkills').html(
+    '<h5>Skills: </h5' +
+    state.user.skills.reduce(function(prev, next) {
+      return prev + next.skillName;
+    }, '') + '<br>'
+  );
 
-var fakeData = {
-    jobName: "BEST JOBEVER",
-    employerName: "Employer Name",
-    description: "These are the deatils for the best job ever.  It's the best job you'll ever get.  Let me tell you, nobody knows jobs like I do.  I know all of the best jobs and the best places to get jobs.  And that's why I should be president of the United States.  And I'll stop ISIS.  If she could do that, She would've done it.  But she didn't.  And everybody should use TEMPiN.",
-    postTime: "5 hours ago",
-    salary: "5",
-    distance:"1.2 Miles",
-    duration:"3 Hours"
-};
+  $('#profileJobs').html(
+    '<h5>Previous Jobs: </h5>' +
+    state.user.jobs.reduce(function(prev, next) {
+      var html = '' +
+        '<div onclick="showSingleJob(0)" style="color: #357e35">' +
+          '<b>' + next.name + '</b>' +
+        '</div>' +
+        '<b>Employer: </b>' +
+        next.employer +
+        '<br>' +
+        '<b>Description: </b>' +
+        next.description +
+        '<br><br>';
 
-var fakeUser = {
-    name: "Donald Trump",
-    profilePicture: "pictures/trump.jpg",
-    location: "Anywhere but the White House",
-    jobs: [fakeData,fakeData,fakeData],
-    skills: [skill, skill,skill],
-    rating: 0.8
-};
+      return prev + html;
+    }, '')
+  );
 
-var employeeView;
-var jobList = [fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData, fakeData];
+  $('#profileEditBtn').html(
+    '<div id="editBtn" style="position: fixed; bottom: 5%; right: 0; width: 45%; height: 5%" class="waves-effect waves-light btn" onclick="createEditProfilePage()">Edit Profile</div>'
+  );
 
-var jobHistory = [];
+  $('#profileAddJobBtn').empty();
 
-function createProfilePage(){
-    $('.button-collapse').sideNav('hide');
-    $("#profileName")[0].innerHTML = "<h4>" + fakeUser.name + "</h4>";
-    $("#profileLoc")[0].innerHTML = "<b>" + fakeUser.location + "</b>";
-    $("#profilePic")[0].innerHTML = "<img src=" + fakeUser.profilePicture + " id='navProfilePic' >";
+  $('#panelView').css('display', 'none');
+  $('#singleJobView').css('display', 'none');
+  $('#profilePane').css('display', 'block');
+  $('#addJobPane').css('display', 'none');
 
-    $("#profileSkills")[0].innerHTML = "<h5>Skills: </h5>" + fakeUser.skills.reduce(function(acc, skill) {
-            return acc + skill.skillName + "<br>";
-        }, "");
-
-    $("#profileJobs")[0].innerHTML = "<h5>Prior Jobs: </h5>" + fakeUser.jobs.reduce(function(acc, job) {
-            var text = "<div onclick='showSingleJob(0)' style=\"color:#357e35\"><b>" + job.jobName + "</b></div>" + "<b>Employer : </b>" + job.employerName + "<br><b>Description : </b>" + job.description + "<br><br>"
-            return acc + text;
-        }, "");
-
-    $("#profileEditBtn")[0].innerHTML = "<div id='editBtn' style='position:fixed; bottom:5%; right:0;width:45%;height:5%' class='waves-effect waves-light btn' onclick='createEditProfilePage()'>Edit Profile</div>";
-
-    $("#profileAddJobBtn")[0].innerHTML = "";
-
-    $("#panelView")[0].style.display = "none";
-    $("#singleJobView")[0].style.display = "none";
-    $("#profilePane")[0].style.display = "block";
-    $("#addJobPane")[0].style.display = "none";
-
-    showBackButton();
-    $("#backButton").one("click touch", function () {
-        showPanels()
-    });
+  showBackButton();
+  $('#backButton').one('click touch', function () {
+    showPanels()
+  });
 }
 
 function createEditProfilePage(){
-    $("#profileName")[0].innerHTML = "<h4>" + fakeUser.name + "</h4>";
-    $("#profileLoc")[0].innerHTML = "<b>" + fakeUser.location + "</b>";
-    $("#profilePic")[0].innerHTML = "<img src=" + fakeUser.profilePicture + " id='navProfilePic' >";
-
+  $('#profileName').html('<h4>' + state.user.name + '</h4>');
+  $('#profileLoc').html('<b>' + state.user.location + '</b>');
+  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic">');
 
     //TODO: Space AddSkill propperly
     //TODO: Create AddSkill dialog
@@ -83,15 +68,15 @@ function createEditProfilePage(){
     //TODO: Create AddJobPage
     $("#profileAddJobBtn")[0].innerHTML = "<div id='editBtn' class='waves-effect waves-light btn' onclick='createAddJobPage()'>Add Job</div><br><br>";
 
-    $("#panelView")[0].style.display = "none";
-    $("#singleJobView")[0].style.display = "none";
-    $("#profilePane")[0].style.display = "block";
-    $("#addJobPane")[0].style.display = "none";
+  $('#panelView').css('display', 'none');
+  $('#singleJobView').css('display', 'none');
+  $('#profilePane').css('display', 'block');
+  $('#addJobPane').css('display', 'none');
 
-    showBackButton();
-    $("#backButton").one("click touch", function () {
-        showPanels()
-    });
+  showBackButton();
+  $('#backButton').one('click touch', function () {
+    showPanels()
+  });
 }
 
 //TODO: Get page to actually show up
@@ -108,213 +93,157 @@ function createAddJobPage(){
 }
 
 
+//////////////////
+// Job Listings //
+//////////////////
+
+// Creates all the individual list elements and adds click event on them
 function createJobPanels() {
-    employeeView = $("#employeeView")[0];
-    jobList.forEach(createSingleJobPanel);
+  state.jobs.map(function(job) {
+    $html = renderSingleJobPanel(job);
+    $('#panelView').append($html.on('click touch', function() {
+      showSingleJob(job.id);
+    }));
+  });
 }
 
-function createJobHistory(){
-    employeeView = $("#employeeView")[0];
-    jobHistory.forEach(createHistoryPanel);
+// How an individual job panel should be rendered
+function renderSingleJobPanel(data) {
+  return $('' +
+    '<div class="jobPanel col s12">' +
+      '<div class="panelRow">' +
+        '<div class="panelJobName">' + data.name + '</div>' +
+        '<div class="panelPostTime">Posted ' + data.posted + '</div>' +
+      '</div>' +
+      '<div class="panelRow panelRowMiddle">' +
+        '<div class="panelEmployerName">' + data.employer + '</div>' +
+        '<div class="panelSalary">$' + data.wage + ' / hr</div>' +
+      '</div>' +
+      '<div class="panelRow panelRowBottom">' +
+        '<div class="panelDescription">' + data.description + '</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="divider" style="width: 100%;"></div>');
 }
 
-function showHistory(){
-    $("#offerPanel")[0].innerHTML="";
-    $("#panelView")[0].innerHTML="";
-    createJobHistory();
-    $("#employeeView")[0].style.display="Block";
-    $("#employerView")[0].style.display="None";
-    $("#employeeSideNav")[0].style.display="Block";
-    $("#employerSideNav")[0].style.display="None";
-    $("#switchViews")[0].innerHTML="Change to employer";
+// How an individual job should be shown once it's list element has been clicked
+function showSingleJob(id) {
+  // Find the job that was clicked
+  var job = state.jobs.filter(function(job) {
+    return job.id === id;
+  })[0];
+
+  // Update the HTML
+  $('#singleJobTitle').html(job.name);
+  $('#singleJobPay').html('$' + job.wage + ' / hr');
+  $('#singleJobEmployer').html(job.employer);
+  $('#singleJobDistance').html('<b>Distance: </b>' + job.distance);
+  $('#singleJobDuration').html('<b>Duration: </b>' + job.duration);
+  $('#singleJobTime').html('<b>Posted: </b>' + job.posted);
+  $('#singleJobDescription').html('<b>Description: </b><br>' + job.description);
+
+  $('#panelView').css('display', 'none');
+  $('#singleJobView').css('display', 'block');
+  $('#profilePane').css('display', 'none');
+
+  $('#applyButton').one('click touch', function() {
+    applyToJob(state.user, job);
+  });
+
+  showBackButton();
+  $('#backButton').one('click touch', function() {
+    showPanels();
+  });
 }
 
-function createSingleJobPanel(jobData, index) {
-    //creating panel
-    var panel = document.createElement("div");
-    panel.classList = "jobPanel col s12";
-    $(panel).on("click touch", function () {
-        showSingleJob(index)
-    });
+// What happens when the 'Apply' button is clicked
+function applyToJob(user, job) {
+  state.offers.map(function(offer) {
+    if (offer.id === job.id) {
+      offer.applicants.push(user);
+      state.history.unshift(offer);
+    }
+  });
 
-    //creating top line
-    var topLine = document.createElement("div");
-    topLine.classList = "panelRow";
-    //creating and adding jobName
-    var jobName = document.createElement("div");
-    jobName.classList = "panelJobName";
-    jobName.innerHTML = jobData.jobName;
-    topLine.appendChild(jobName);
-    //creating and adding postTime
-    var postTime = document.createElement("div");
-    postTime.classList = "panelPostTime";
-    postTime.innerHTML = "Posted " + jobData.postTime;
-    topLine.appendChild(postTime);
-
-
-    //creating middle line
-    var middleLine = document.createElement("div");
-    middleLine.classList = "panelRow panelRowMiddle";
-    //creating and adding employerName
-    var employerName = document.createElement("div");
-    employerName.classList = "panelEmployerName";
-    employerName.innerHTML = jobData.employerName;
-    middleLine.appendChild(employerName);
-    //creating and adding salary
-    var salary = document.createElement("div");
-    salary.classList = "panelSalary";
-    salary.innerHTML = "$" + jobData.salary + "/hr";
-    middleLine.appendChild(salary);
-
-    //creating bottom line
-    var bottomLine = document.createElement("div");
-    bottomLine.classList = "panelRow panelRowBottom";
-    //creating description
-    var description = document.createElement("div");
-    description.classList = "panelDescription";
-    description.innerHTML = jobData.description;
-    bottomLine.appendChild(description);
-
-    //putting panel together
-    panel.appendChild(topLine);
-    panel.appendChild(middleLine);
-    panel.appendChild(bottomLine);
-
-    var panelView = $("#panelView")[0];
-    //adding panel
-    panelView.appendChild(panel);
-
-    //adding divider
-    var divider = document.createElement("div");
-    divider.classList.add("divider");
-    divider.style.width = "100%";
-    panelView.appendChild(divider);
-}
-
-function showSingleJob(index) {
-    var jobInfo=jobList[index];
-    $("#singleJobTitle")[0].innerHTML=jobInfo.jobName;
-    $("#singleJobPay")[0].innerHTML="$"+jobInfo.salary+"/hr";
-    $("#singleJobEmployer")[0].innerHTML=jobInfo.employerName;
-    $("#singleJobDistance")[0].innerHTML="<b>Distance: </b>"+jobInfo.distance;
-    $("#singleJobDuration")[0].innerHTML="<b>Duration: </b>"+jobInfo.duration;
-    $("#singleJobTime")[0].innerHTML="<b>Posted: </b>"+jobInfo.postTime;
-    $("#singleJobDescription")[0].innerHTML="<b>Description: </b>\n"+jobInfo.description;
-    $("#applyButton").one('click touch',function(){
-        applyToJob(fakeUser,index);
-    });
-    $("#panelView")[0].style.display = "none";
-    $("#singleJobView")[0].style.display = "block";
-    $("#profilePane")[0].style.display = "none";
-    showBackButton();
-    $("#backButton").one("click touch", function () {
-        showPanels();
-    });
+  applySuccess(showPanels);
 }
 
 function showPanels() {
-    $("#singleJobView")[0].style.display = "none";
-    $("#panelView")[0].style.display = "block";
-    $("#profilePane")[0].style.display = "none";
-    showHamburger()
+  $('#panelView').css('display', 'block');
+  $('#singleJobView').css('display', 'none');
+  $('#profilePane').css('display', 'none');
+  showHamburger();
 }
 
-function applyToJob(userInfo,jobIndex){
-    offerList[jobIndex].applicants.push(userInfo);
-    offerList[jobIndex].numApps+=1;
+function showHistory() {
+  $('#offerPanel').empty();
+  $('#panelView').empty();
 
-    jobHistory.unshift(offerList[jobIndex]);
+  state.history.map(function(job) {
+    $html = renderSingleJobPanel(job);
+    $('#panelView').append($html.on('click touch', function() {
+      showSingleHistory(job.id);
+    }));
+  });
 
-    applySuccess(showPanels);
+  showEmployeeView();
 }
 
+function showSingleHistory(id) {
+  var job = state.jobs.filter(function(job) {
+    return job.id === id;
+  })[0];
 
+  $('#singleHistoryTitle').html(job.name);
+  $('#singleHistoryPay').html('$' + job.wage + ' / hr');
+  $('#singleHistoryEmployer').html(job.employer);
+  $('#singleHistoryDistance').html('<b>Distance: </b>' + job.distance);
+  $('#singleHistoryDuration').html('<b>Duration: </b>' + job.duration);
+  $('#singleHistoryTime').html('<b>Posted: </b>' + job.posted);
+  $('#singleHistoryDescription').html('<b>Description: </b><br>' + job.description);
 
-function createHistoryPanel(jobData, index) {
-    //creating panel
-    var panel = document.createElement("div");
-    panel.classList = "jobPanel col s12";
-    $(panel).on("click touch", function () {
-        showSingleHistory(index)
-    });
-    //creating top line
-    var topLine = document.createElement("div");
-    topLine.classList = "panelRow";
-    //creating and adding jobName
-    var jobName = document.createElement("div");
-    jobName.classList = "panelJobName";
-    jobName.innerHTML = jobData.jobName;
-    topLine.appendChild(jobName);
-    //creating and adding postTime
-    var postTime = document.createElement("div");
-    postTime.classList = "panelPostTime";
-    postTime.innerHTML = "Posted " + jobData.postTime;
-    topLine.appendChild(postTime);
+  $('#panelView').css('display', 'none');
+  $('#singleHistoryView').css('display', 'block');
 
-    //creating middle line
-    var middleLine = document.createElement("div");
-    middleLine.classList = "panelRow panelRowMiddle";
-    //creating and adding employerName
-    var employerName = document.createElement("div");
-    employerName.classList = "panelEmployerName";
-    employerName.innerHTML = jobData.employerName;
-    middleLine.appendChild(employerName);
-    //creating and adding salary
-    var salary = document.createElement("div");
-    salary.classList = "panelSalary";
-    salary.innerHTML = "$" + jobData.salary + "/hr";
-    middleLine.appendChild(salary);
+  $('#singleReviewStatus').html('<b>Review Status: </b><br>' + review);
+  $("#reviewButton").one('click touch',function(){
+      showBackButton();
+      $('#backButton').one('click touch', function () {
+          showHistoryPanels();
+      });
 
-    //creating bottom line
-    var bottomLine = document.createElement("div");
-    bottomLine.classList = "panelRow panelRowBottom";
-    //creating description
-    var description = document.createElement("div");
-    description.classList = "panelDescription";
-    description.innerHTML = jobData.description;
-    bottomLine.appendChild(description);
+      $('#reviewView').css('display', 'block');
+      $('#singleHistoryView').css('display', 'none');
+      $('#panelView').css('display', 'none');
 
-    //putting panel together
-    panel.appendChild(topLine);
-    panel.appendChild(middleLine);
-    panel.appendChild(bottomLine);
-    var reviewView = $("#panelView")[0];
-    //adding panel
-    reviewView.appendChild(panel);
-    //adding divider
-    var divider = document.createElement("div");
-    divider.classList.add("divider");
-    divider.style.width = "100%";
-    reviewView.appendChild(divider);
+      $('#employer').html(job.employer);
+  });
+
+  showBackButton();
+  $('#backButton').one('click touch', function () {
+      showHistoryPanels();
+  });
+  $('#cancelButton').one('click touch', function () {
+      showHistoryPanels();
+  });
 }
 
-function showSingleHistory(index) {
-    var jobInfo=jobHistory[index];
-    $("#singleHistoryTitle")[0].innerHTML=jobInfo.jobName;
-    $("#singleHistoryPay")[0].innerHTML="$"+jobInfo.salary+"/hr";
-    $("#singleHistoryEmployer")[0].innerHTML=jobInfo.employerName;
-    $("#singleHistoryDistance")[0].innerHTML="<b>Distance: </b>"+jobInfo.distance;
-    $("#singleHistoryDuration")[0].innerHTML="<b>Duration: </b>"+jobInfo.duration;
-    $("#singleHistoryTime")[0].innerHTML="<b>Posted: </b>"+jobInfo.postTime;
-    $("#singleHistoryDescription")[0].innerHTML="<b>Description: </b>\n"+jobInfo.description;
-
-    $("#singleReviewStatus")[0].innerHTML="<b>Review Status: </b>\n" + review;
-    $("#reviewButton").one('click touch',function(){
-        reviewing(index);
-    });
-    $("#panelView")[0].style.display = "none";
-    $("#singleHistoryView")[0].style.display = "block";
-    showBackButton();
-    $("#backButton").one("click touch", function () {
-        showHistoryPanels();
-    });
-    $("#cancelButton").one("click touch", function () {
-        showHistoryPanels();
-    });
-}
 function showHistoryPanels() {
-    $("#reviewView")[0].style.display = "none";
-    $("#singleHistoryView")[0].style.display = "none";
-    $("#panelView")[0].style.display = "block";
-    showHamburger()
+  $('#reviewView').css('display', 'none');
+  $('#singleHistoryView').css('display', 'none');
+  $('#panelView').css('display', 'block');
+  showHamburger();
+}
+
+function highlightFace() {
+  $('.face').click(function () {
+    $('.selected').removeClass('selected');
+    $(this).addClass('selected');
+  });
+}
+
+var review = '';
+function submitReview() {
+  review = $('#reviewArea').val();
+  showHistoryPanels();
 }
