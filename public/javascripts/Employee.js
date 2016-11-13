@@ -71,10 +71,7 @@ function createEditProfilePage(){
     //TODO: Remove Skill when skill clicked
     $("#profileSkills")[0].innerHTML = "<h5>Skills: </h5>" + fakeUser.skills.reduce(function(acc, skill) {
             return acc + "<div id='skillTag' class='waves-effect waves-light btn' onclick=''>" + skill.skillName + "  <i class='material-icons'>clear</i></div>" + "<br>";
-        }, "") + "<div id='skillTag' class='waves-effect waves-light btn' onclick='function() {" +
-        "var skill = prompt(\'Enter a new skill\');" +
-        "document.getElementById(\'profileSkillAdd\').innerHTML = skill;" +
-        "}'>  Add Skill  </div>" + "<br>";
+        }, "") + "<div id='skillTag' class='waves-effect waves-light btn' onclick='document.getElementById(\'profileSkillAdd\').innerHTML = prompt(\'Enter a new skill\')'>  Add Skill  </div>" + "<br>";
 
     $("#profileJobs")[0].innerHTML = "<h5>Prior Jobs: </h5>" + fakeUser.jobs.reduce(function(acc, job) {
             var text = "<div onclick='showSingleJob(0)' style='color:#357e35'><b>" + job.jobName + "</b></div>" + "<b>Employer : </b>" + job.employerName + "<br><b>Description : </b>" + job.description + "<br><br>"
