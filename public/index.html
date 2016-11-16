@@ -19,134 +19,75 @@
     <script type="text/javascript" src="/javascripts/Employee.js"></script>
     <script type="text/javascript" src="/javascripts/Employer.js"></script>
 </head>
-
 <body>
+<!-- Success Message -->
 <div id="successOverlay" style="display:none;" class="valign-wrapper">
     <div class="valign center-align" id="successContainer">
-        <i class="material-icons" style="font-size:180px">check_circle</i>
-        <div>Success!</div>
+        <i class="material-icons xlarge">check_circle</i>
+        <h5>Success!</h5>
     </div>
 </div>
+<!-- Navbar -->
 <div class="navbar-fixed">
+    <!-- Vertical Dots Section -->
     <ul id="dropdownTest" class="dropdown-content">
-        <li><a href="/review.html">Review</a></li>
-        <li><a href="/index.html">Home</a></li>
+        <li><a href="#">Home</a></li>
         <li><a href="#">View on Map</a></li>
         <li><a href="#">Filter Results</a></li>
     </ul>
-    <nav style="background-color:#7ECB7D">
+    <!-- Navbar -->
+    <nav class="primary-nav">
         <div class="nav-wrapper">
-            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse" style="padding-left:15px">
-                <i class="material-icons">menu</i>
-            </a>
-            <a id="backButton" href="#" style="padding-left:15px; display:none;">
-                <i class="material-icons">arrow_back</i>
-            </a>
-            <a href="#" class="brand-logo">TEMPiN</a>
+            <!-- Hamburger Menu -->
+            <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a id="backButton" href="#"><i class="material-icons">arrow_back</i></a>
+            <!-- Center Logo -->
+            <div><a href="/index.html" class="brand-logo">TEMPiN</a></div>
+            <!-- Search Button -->
             <div id="rightNav">
                 <ul class="right">
-                    <li><a id="search" style="padding-right:0; padding-left:30px; display:none"><i class="material-icons">search</i></a>
-                    </li>
-                    <li><a id="menu" class="dropdown-button" href="#" data-activates="dropdownTest" style="display:none">
-                        <i class="material-icons">more_vert</i></a>
-                    </li>
+                    <li><a id="search" style="padding-right:0; padding-left:30px; display:none"><i class="material-icons">search</i></a></li>
+                    <!-- This Activates the Vertical Dots Section -->
+                    <li><a id="menu" class="dropdown-button" href="#" data-activates="dropdownTest" style="display:none"><i class="material-icons">more_vert</i></a></li>
                 </ul>
             </div>
-            <div id="sidebar" class="side-nav" style="background-color:white">
+            <!-- Side Navbar Content -->
+            <div id="sidebar" class="side-nav">
+                <!-- Profile Picture -->
                 <div id="navProfile">
                     <div style="padding:15px 0 0 15px"><img id="navProfilePic" onclick="createProfilePage()"/></div>
                     <div id="navProfileName"></div>
                 </div>
+                <!-- Divider -->
                 <div class="divider" style="margin-top:0"></div>
+                <!-- Links -->
                 <ul id="employeeSideNav">
-                    <li><a id="jobHistory" href="#" onclick="showHistory()">Job History</a></li>
-                    <li><a id="jobList" onclick="showJobs()">Job List</a></li>
+                    <li><a id="jobList" onclick="showJobs()">Job Listings</a></li>
+                    <li><a id="jobHistory" href="#" onclick="showHistory()">Past Jobs</a></li>
                 </ul>
                 <ul id="employerSideNav" style="display:none;">
                     <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
                 </ul>
+                <!-- Divider -->
                 <div class="divider" style="margin-top:0"></div>
-                <ul>
-                    <li><a href="#" id="switchViews">Change to Employer</a></li>
-                </ul>
+                <!-- Switch Views -->
+                <ul><li><a href="#" id="switchViews">Change to Employer</a></li></ul>
             </div>
-
         </div>
     </nav>
 </div>
-
+<!-- Employee View -->
 <div id="employeeView" style="display:none">
-    <div id="panelView" class="container">
-
-    </div>
-    <div id="singleJobView" style="display:none;">
-        <div id="singleJobInfoArea">
-            <div class="panelRow">
-                <div id="singleJobTitle" class="left"></div>
-                <div id="singleJobPay" class="right"></div>
-            </div>
-            <div class="panelRow">
-                <div id="singleJobEmployer"></div>
-            </div>
-            <div>
-                <div id="singleJobTime"></div>
-                <div id="singleJobDistance"></div>
-                <div id="singleJobDuration"></div>
-            </div>
-            <div id="singleJobDescription" class="panelRow" style="white-space:pre-wrap;"></div>
-        </div>
-        <div class="bottomButton">
-            <a class="waves-effect waves-light btn" id="applyButton" style="width: 100%"><i class="material-icons left">done</i>Apply</a>
-        </div>
-    </div>
-
-    <div id="singleHistoryView" style="display:none;">
-        <div id="singleHistoryArea">
-            <div class="panelRow">
-                <div id="singleHistoryTitle" class="left"></div>
-                <div id="singleHistoryPay" class="right"></div>
-            </div>
-            <div class="panelRow">
-                <div id="singleHistoryEmployer"></div>
-            </div>
-            <div>
-                <div id="singleHistoryTime"></div>
-                <div id="singleHistoryDistance"></div>
-                <div id="singleHistoryDuration"></div>
-            </div>
-            <div id="singleHistoryDescription" class="panelRow" style="white-space:pre-wrap;"></div>
-
-            <div id="singleReviewStatus" class="panelRow" style="white-space:pre-wrap;"></div>
-        </div>
-        <div class="bottomButton" style="text-align: center">
-            <button id="cancelButton" class="waves-effect waves-light btn" style="background-color: red">Back</button>
-            <button id="reviewButton" class="waves-effect waves-light btn" style="background-color: greenyellow">Review</button>
-        </div>
-    </div>
-
-    <div id="reviewView" style="display:none;">
-        <div class="box">Reviewing <span id="employer"></span></div>
-        <div>
-            <form>
-                <textarea id="reviewArea"></textarea>
-            </form>
-            <div style="text-align: center">
-                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_dissatisfied</i></a>
-                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_dissatisfied</i></a>
-                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_neutral</i></a>
-                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_satisfied</i></a>
-                <a><i class="material-icons center face" style="font-size:36px;" onclick="highlightFace()">sentiment_very_satisfied</i></a>
-            </div>
-            <br><br>
-
-            <div style="text-align: center">
-                <a class="waves-effect waves-light btn" style="background-color: red" onclick="showHistoryPanels()"><i class="material-icons left">cancel</i>Cancel</a>
-                <a class="waves-effect waves-light btn" style="background-color: greenyellow" onclick="submitReview()"><i class="material-icons left">check_circle</i>Submit</a>
-            </div>
-        </div>
-    </div>
-
+    <!-- Main Content Section -->
+    <div id="panelView" class="container"></div>
+    <!-- Single Job -->
+    <div id="singleJobView" class="container" style="display:none;"></div>
+    <!-- Single Past Job -->
+    <div id="singleHistoryView" class="container" style="display:none;"></div>
+    <!-- Reviewing a Past Job -->
+    <div id="reviewView" class="container" style="display:none;"></div>
 </div>
+<!-- Employer View -->
 <div id="employerView" style="display:none;">
     <ul id="offerDropdown" class="dropdown-content">
         <li><a id="openClose" href="#">Close</a></li>
