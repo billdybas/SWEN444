@@ -165,13 +165,13 @@ function renderSingleJobPanel(data) {
   return $('' +
     '<div class="jobPanel row">' +
       '<div class="col s12">' +
-        '<h5 class="jobName left">' + data.name + '</h5>' +
+        '<div class="jobName left" style="font-size:22px;">' + data.name + '</div>' +
           '<div class="jobDetails right">' +
             '<div class="jobPosted">Posted ' + data.posted + '</div>' +
-            '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
           '</div>' +
       '</div>' +
-      '<div class="col s12">' +
+      '<div class="col s12" style="margin-top:-7px">' +
+        '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
         '<div class="jobEmployer">' + data.employer + '</div>' +
         '<p class="jobDescription">' + data.description + '</p>' +
       '</div>' +
@@ -182,7 +182,7 @@ function renderSingleJob(data) {
   return $('' +
   '<div class="singleJobPanel row">' +
     '<div class="col s12">' +
-      '<h5 class="jobName left">' + data.name + '</h5>' +
+      '<div class="jobName left">' + data.name + '</div>' +
       '<div class="jobDetails right">' +
         '<div class="jobPosted">Posted ' + data.posted + '</div>' +
         '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
