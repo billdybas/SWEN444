@@ -1,37 +1,39 @@
 function createProfilePage() {
   $('.button-collapse').sideNav('hide');
-  $('#profileName').html('<h4>' + state.user.name + '</h4>');
+  $('#profileName').html('<h3>' + state.user.name + '</h3>');
   $('#profileLoc').html('<b>' + state.user.location + '</b>');
   $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic" class="profilePic">');
 
   $('#profileSkills').html(
-    '<h5>Skills: </h5' +
+    '<h4>Skills: </h4>' +
     state.user.skills.reduce(function(prev, next) {
-      return prev + next.skillName;
-    }, '') + '<br>'
+      return prev + next.skillName + '<br>';
+    }, '')
+    + '<br>'
   );
 
   $('#profileJobs').html(
-    '<h5>Previous Jobs: </h5>' +
+    '<h4>Previous Jobs: </h4>' +
     state.user.jobs.reduce(function(prev, next) {
       var html = '' +
-        '<div onclick="showSingleJob(0)" style="color: #357e35">' +
+        '<h5 style="color: #357e35">' +
           '<b>' + next.name + '</b>' +
-        '</div>' +
+        '</h5>' +
         '<b>Employer: </b>' +
         next.employer +
         '<br>' +
         '<b>Description: </b>' +
         next.description +
         '<br><br>';
-
       return prev + html;
     }, '')
   );
 
   $('#profileEditBtn').html(
-    '<div id="editBtn" style="position: fixed; bottom: 5%; right: 0; width: 45%; height: 5%" class="waves-effect waves-light btn" onclick="createEditProfilePage()">Edit Profile</div>'
-  );
+    '<button id="editBtn" style="position: fixed; bottom: 5%; right: 5%;" class="waves-effect waves-light btn-floating btn-large"><i class="material-icons">edit</i></div>'
+  ).one('click touch', function() {
+    createEditProfilePage();
+  });
 
   $('#profileAddJobBtn').empty();
 
@@ -49,27 +51,42 @@ function createProfilePage() {
 function createEditProfilePage(){
   $('#profileName').html('<h4>' + state.user.name + '</h4>');
   $('#profileLoc').html('<b>' + state.user.location + '</b>');
-  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic">');
+  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic" class="profilePic">');
 
-    //TODO: Space AddSkill propperly
-    //TODO: Create AddSkill dialog
-    //TODO: Remove Skill when skill clicked
-    $("#profileSkills")[0].innerHTML = "<h5>Skills: </h5>" + fakeUser.skills.reduce(function(acc, skill) {
-            return acc + "<div id='skillTag' class='waves-effect waves-light btn' onclick=''>" + skill.skillName + "  <i class='material-icons'>clear</i></div>" + "<br>";
-        }, "") + "<div id='skillTag' class='waves-effect waves-light btn' onclick='function() {" +
-        "var skill = prompt(\'Enter a new skill\');" +
-        "document.getElementById(\'profileSkillAdd\').innerHTML = skill;" +
-        "}'>  Add Skill  </div>" + "<br>";
+  $("#profileSkills").html(
+    "<h5>Skills: </h5>" +
+    state.user.skills.reduce(function(prev, next) {
+      return prev + "<div class='waves-effect waves-light btn'>" + next.skillName + "  <i class='material-icons'>clear</i></div>" + "<br>";
+    }, '') +
+    "<div id='skillTag' class='waves-effect waves-light btn' >  Add Skill  </div>" + "<br>"
+  );
 
-    $("#profileJobs")[0].innerHTML = "<h5>Prior Jobs: </h5>" + fakeUser.jobs.reduce(function(acc, job) {
-            var text = "<div onclick='showSingleJob(0)' style='color:#357e35'><b>" + job.jobName + "</b></div>" + "<b>Employer : </b>" + job.employerName + "<br><b>Description : </b>" + job.description + "<br><br>"
-            return acc + text;
-        }, "");
+  $('#skillTag').on('click touch', function() {
+    var skill = prompt('Enter a new skill');
+    state.user.skills.push({skillName: skill});
+    $('#skillTag').before("<div class='waves-effect waves-light btn'>" + skill + "  <i class='material-icons'>clear</i></div>" + "<br>");
+  });
 
-    $("#profileEditBtn")[0].innerHTML = "<div id='editBtn' style='position:fixed; bottom:5%; right:0; width:30%; height:5%' class='waves-effect waves-light btn' onclick='createProfilePage()'>Confirm</div>";
+  $("#profileJobs").html(
+    "<h5>Past Jobs: </h5>" +
+    state.user.jobs.reduce(function(prev, next) {
+      var job = state.jobs.filter(function(job) {
+        return job.id == next.id;
+      })[0];
 
-    //TODO: Create AddJobPage
-    $("#profileAddJobBtn")[0].innerHTML = "<div id='editBtn' class='waves-effect waves-light btn' onclick='createAddJobPage()'>Add Job</div><br><br>";
+      var text = "<div onclick='showSingleJob' style='color:#357e35'><b>" + job.name + "</b></div>" + "<b>Employer : </b>" + job.employer + "<br><b>Description : </b>" + job.description + "<br><br>";
+      return prev + text;
+    }, '')
+  );
+
+  $('#profileEditBtn').html(
+    '<button id="editBtn" style="position: fixed; bottom: 5%; right: 5%;" class="waves-effect waves-light btn-floating btn-large"><i class="material-icons">check</i></div>'
+  ).one('click touch', function() {
+    applySuccess(showPanels);
+  });
+
+  //TODO: Create AddJobPage
+  $("#profileAddJobBtn")[0].innerHTML = "<div id='editBtn' class='waves-effect waves-light btn' onclick='createAddJobPage()'>Add Job</div><br><br>";
 
   $('#panelView').css('display', 'none');
   $('#singleJobView').css('display', 'none');
