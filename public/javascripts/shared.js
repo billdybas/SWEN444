@@ -12,8 +12,8 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '1/5/2017',
-    isOpen: true,
-    applicants: []
+    isOpen: chooseRandomElement([true, false]),
+    applicants: [3]
   },
   {
     id: 2,
@@ -28,8 +28,8 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '5/5/2017',
-    isOpen: true,
-    applicants: []
+    isOpen: chooseRandomElement([true, false]),
+    applicants: [2]
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '12/1/2016',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -60,8 +60,8 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '7/5/2017',
-    isOpen: true,
-    applicants: []
+    isOpen: chooseRandomElement([true, false]),
+    applicants: [3, 4]
   },
   {
     id: 5,
@@ -76,7 +76,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '1/5/2017',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -92,7 +92,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '11/5/2016',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -108,7 +108,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '11/5/2016',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -124,7 +124,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '11/5/2016',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -140,7 +140,7 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '11/5/2016',
-    isOpen: true,
+    isOpen: chooseRandomElement([true, false]),
     applicants: []
   },
   {
@@ -156,34 +156,69 @@ var jobs = [
     responsibilities: 'None',
     startDate: '11/4/2016',
     endDate: '11/5/2016',
-    isOpen: true,
-    applicants: []
+    isOpen: chooseRandomElement([true, false]),
+    applicants: [1]
+  }
+];
+
+var users = [
+  {
+    id: 1,
+    name: 'Donald Trump',
+    profilePicture: 'pictures/trump.jpg',
+    location: 'Anywhere but the White House',
+    jobs: [jobs[0], jobs[1]],
+    skills: [
+      {skillName: 'Intimidation'},
+      {skillName: 'Business'},
+      {skillName: 'Wrestling'}
+    ],
+    rating: 0.8
+  },
+  {
+    id: 2,
+    name: 'John Green',
+    profilePicture: 'pictures/john.jpg',
+    location: 'Indiana',
+    jobs: [jobs[2]],
+    skills: [
+      {skillName: 'Writing'},
+      {skillName: 'Video Making'},
+      {skillName: 'Speaking'}
+    ],
+    rating: 1.0
+  },
+  {
+    id: 3,
+    name: 'Jane Doe',
+    profilePicture: 'pictures/jane.jpg',
+    location: 'Bangalore',
+    jobs: [jobs[3]],
+    skills: [
+      {skillName: 'Cleaning'},
+      {skillName: 'Gardening'}
+    ],
+    rating: 0.7
+  },
+  {
+    id: 4,
+    name: 'Pablo Sancez',
+    profilePicture: 'pictures/pablo.jpeg',
+    location: 'Mexico',
+    jobs: [jobs[4]],
+    skills: [
+      {skillName: 'Baseball'},
+      {skillName: 'Running'}
+    ],
+    rating: 0.4
   }
 ];
 
 state = {
   currentView: 'login',
-  user: {
-    name: 'Donald Trump',
-    profilePicture: 'pictures/trump.jpg',
-    location: 'Anywhere but the White House',
-    jobs: [
-      jobs[0],
-      jobs[1]
-    ],
-    skills: [
-      {
-        skillName: 'Intimidation'
-      },
-      {
-        skillName: 'Intimidation'
-      },
-      {
-        skillName: 'Intimidation'
-      }
-    ],
-    rating: 0.8
-  },
+  user: users.filter(function(user) {
+    return user.id === 1;
+  })[0],
   jobs: jobs,
   history: [],
   offers: jobs
