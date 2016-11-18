@@ -10,25 +10,23 @@ function createOfferPanels() {
 
 function renderSingleOfferPanel(data) {
   return $('' +
-    '<div class="jobPanel col s12">' +
-      '<div class="panelRow">' +
-        '<div class="panelJobName">' + data.name + '</div>' +
-        '<div class="panelPostTime">Posted ' + data.posted + '</div>' +
-      '</div>' +
-      '<div class="panelRow">' +
-        '<div class="offerEmployerName">' + data.applicants.length + ' Applications Submitted</div>' +
-        '<div id="openCloseOffer" style="float: right;">' +
-          '<a style="color: #000000;" href="#" class="offerDropdown dropdown-button"><i class="material-icons offerDots">more_vert</i></a>' +
-          '<div class="offerOpenClosed">' +
-            (data.isOpen ?
-              '<div style="float:right">Open</div> <i class="material-icons" style="font-size:20px; color:green;">check</i>' :
-              '<div style="float:right">Closed</div> <i class="material-icons" style="font-size:20px; color:red">close</i>'
-            ) +
-          '</div>' +
+    '<div class="jobPanel row">' +
+      '<div class="col s12">' +
+        '<h5 class="jobName left">' + data.name + '</h5>' +
+        '<div class="jobDetails right">' +
+          '<div class="jobPosted">Posted ' + data.posted + '</div>' +
         '</div>' +
       '</div>' +
-    '</div>' +
-    '<div class="divider" style="width: 100%;"></div>');
+      '<div class="col s12">' +
+        '<div class="left">' + data.applicants.length + ' Applications Submitted</div>' +
+        '<div id="jobStatus" class="right" style="position:relative">' +
+          (data.isOpen ?
+            '<i class="material-icons small" style="color:green; position:absolute; bottom:3px; left:-25px;">check</i><div style="display:inline">Open</div>' :
+            '<i class="material-icons small" style="color:red; position:absolute; bottom:3px; left:-25px;">close</i><div style="display:inline">Closed</div>'
+          ) +
+        '</div>' +
+      '</div>' +
+    '</div>');
 }
 
 function showSingleOffer(id) {

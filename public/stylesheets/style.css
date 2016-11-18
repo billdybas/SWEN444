@@ -14,6 +14,10 @@ body {
 
 
 /* Material Icons */
+i.material-icons.small {
+    font-size: 20px;
+}
+
 i.material-icons.medium {
     font-size: 36px;
 }
@@ -184,25 +188,9 @@ button.bottomButton {
 
 .selected {
     background-color: yellow;
-    /*box-shadow: 0px 12px 22px 1px #333;*/
 }
 
 
-
-.offerDots {
-    float: right;
-    font-size: 20px;
-}
-
-.offerOpenClosed {
-    float: right;
-}
-
-.offerDropdown {
-    float: right;
-    font-size: 14px;
-    padding-left: 5px;
-}
 
 .fullSizeButton {
     width: 100%;
@@ -234,11 +222,6 @@ button.bottomButton {
     position:fixed;
     bottom:0;
     padding-bottom:5px;
-}
-
-.offerEmployerName {
-    float: left;
-    font-size: 14px;
 }
 
 #singleOfferView{
