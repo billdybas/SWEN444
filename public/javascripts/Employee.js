@@ -2,7 +2,7 @@ function createProfilePage() {
   $('.button-collapse').sideNav('hide');
   $('#profileName').html('<h4>' + state.user.name + '</h4>');
   $('#profileLoc').html('<b>' + state.user.location + '</b>');
-  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic">');
+  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic" class="profilePic">');
 
   $('#profileSkills').html(
     '<h5>Skills: </h5' +
@@ -107,25 +107,6 @@ function createJobPanels() {
   });
 }
 
-// How an individual job panel should be rendered
-function renderSingleJobPanel(data) {
-  return $('' +
-    '<div class="jobPanel col s12">' +
-      '<div class="panelRow">' +
-        '<div class="panelJobName">' + data.name + '</div>' +
-        '<div class="panelPostTime">Posted ' + data.posted + '</div>' +
-      '</div>' +
-      '<div class="panelRow panelRowMiddle">' +
-        '<div class="panelEmployerName">' + data.employer + '</div>' +
-        '<div class="panelSalary">$' + data.wage + ' / hr</div>' +
-      '</div>' +
-      '<div class="panelRow panelRowBottom">' +
-        '<div class="panelDescription">' + data.description + '</div>' +
-      '</div>' +
-    '</div>' +
-    '<div class="divider" style="width: 100%;"></div>');
-}
-
 // How an individual job should be shown once it's list element has been clicked
 function showSingleJob(id) {
   // Find the job that was clicked
@@ -133,17 +114,8 @@ function showSingleJob(id) {
     return job.id === id;
   })[0];
 
-  // Update the HTML
-  $('#singleJobTitle').html(job.name);
-  $('#singleJobPay').html('$' + job.wage + ' / hr');
-  $('#singleJobEmployer').html(job.employer);
-  $('#singleJobDistance').html('<b>Distance: </b>' + job.distance);
-  $('#singleJobDuration').html('<b>Duration: </b>' + job.duration);
-  $('#singleJobTime').html('<b>Posted: </b>' + job.posted);
-  $('#singleJobDescription').html('<b>Description: </b><br>' + job.description);
-
+  $('#singleJobView').empty().append(renderSingleJob(job)).css('display', 'block');
   $('#panelView').css('display', 'none');
-  $('#singleJobView').css('display', 'block');
   $('#profilePane').css('display', 'none');
 
   $('#applyButton').one('click touch', function() {
@@ -168,6 +140,49 @@ function applyToJob(user, job) {
   applySuccess(showPanels);
 }
 
+// How an individual job panel should be rendered
+function renderSingleJobPanel(data) {
+  return $('' +
+    '<div class="jobPanel row">' +
+      '<div class="col s12">' +
+        '<h5 class="jobName left">' + data.name + '</h5>' +
+          '<div class="jobDetails right">' +
+            '<div class="jobPosted">Posted ' + data.posted + '</div>' +
+            '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
+          '</div>' +
+      '</div>' +
+      '<div class="col s12">' +
+        '<div class="jobEmployer">' + data.employer + '</div>' +
+        '<p class="jobDescription">' + data.description + '</p>' +
+      '</div>' +
+    '</div>');
+}
+
+function renderSingleJob(data) {
+  return $('' +
+  '<div class="singleJobPanel row">' +
+    '<div class="col s12">' +
+      '<h5 class="jobName left">' + data.name + '</h5>' +
+      '<div class="jobDetails right">' +
+        '<div class="jobPosted">Posted ' + data.posted + '</div>' +
+        '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="col s12">' +
+      '<p class="jobEmployer"><b>Employer: </b>' + data.employer + '</p>' +
+      '<p class="jobLocation"><b>Location: </b>' + data.location + '</p>' +
+      '<p class="jobDistance"><b>Distance: </b>' + data.distance + '</p>' +
+      '<p class="jobDuration"><b>Duration: </b>' + data.duration + '</p>' +
+      '<p class="jobTime"><b>Start: </b>' + data.startDate + '</p>' +
+      '<p class="jobTime"><b>End: </b>' + data.endDate + '</p>' +
+      '<p class="jobDescription">' + data.description + '</p>' +
+    '</div>' +
+    '<div class="col s12">' +
+      '<a class="waves-effect waves-light btn bottomButton green darken-0" id="applyButton"><i class="material-icons left">done</i>Apply</a>' +
+    '</div>' +
+  '</div>');
+}
+
 function showPanels() {
   $('#panelView').css('display', 'block');
   $('#singleJobView').css('display', 'none');
@@ -175,16 +190,24 @@ function showPanels() {
   showHamburger();
 }
 
+//////////////////
+// Job History  //
+//////////////////
+
 function showHistory() {
   $('#offerPanel').empty();
   $('#panelView').empty();
 
-  state.history.map(function(job) {
-    $html = renderSingleJobPanel(job);
-    $('#panelView').append($html.on('click touch', function() {
-      showSingleHistory(job.id);
-    }));
-  });
+  if (state.history.length) {
+    state.history.map(function(job) {
+      $html = renderSingleJobPanel(job);
+      $('#panelView').append($html.on('click touch', function() {
+        showSingleHistory(job.id);
+      }));
+    });
+  } else {
+    $('#panelView').html('<h4 style="text-align:center; margin-top:35%;">Oh No! No Past Jobs</h4>');
+  }
 
   showEmployeeView();
 }
@@ -194,38 +217,65 @@ function showSingleHistory(id) {
     return job.id === id;
   })[0];
 
-  $('#singleHistoryTitle').html(job.name);
-  $('#singleHistoryPay').html('$' + job.wage + ' / hr');
-  $('#singleHistoryEmployer').html(job.employer);
-  $('#singleHistoryDistance').html('<b>Distance: </b>' + job.distance);
-  $('#singleHistoryDuration').html('<b>Duration: </b>' + job.duration);
-  $('#singleHistoryTime').html('<b>Posted: </b>' + job.posted);
-  $('#singleHistoryDescription').html('<b>Description: </b><br>' + job.description);
-
+  $('#singleHistoryView').empty().append(renderSingleHistory(job)).css('display', 'block');
   $('#panelView').css('display', 'none');
-  $('#singleHistoryView').css('display', 'block');
+  $('#reviewView').css('display', 'none');
 
-  $('#singleReviewStatus').html('<b>Review Status: </b><br>' + review);
-  $("#reviewButton").one('click touch',function(){
+  $("#reviewButton").one('click touch', function(){
+      $('#reviewView').empty().append(renderReview(job)).css('display', 'block');
+      highlightFace();
+
       showBackButton();
-      $('#backButton').one('click touch', function () {
-          showHistoryPanels();
+      $('#backButton, #cancelButton').one('click touch', function () {
+          showSingleHistory(job.id);
       });
 
-      $('#reviewView').css('display', 'block');
       $('#singleHistoryView').css('display', 'none');
       $('#panelView').css('display', 'none');
 
-      $('#employer').html(job.employer);
+      $('#submitReviewButton').one('click touch', function() {
+        job.review = {
+          text: $('#reviewArea').val(),
+          rating: $('.face.selected').html(),
+        };
+        showSingleHistory(job.id);
+      });
   });
 
   showBackButton();
   $('#backButton').one('click touch', function () {
       showHistoryPanels();
   });
-  $('#cancelButton').one('click touch', function () {
-      showHistoryPanels();
-  });
+}
+
+function renderSingleHistory(data) {
+  return $('' +
+  '<div class="singleJobPanel row">' +
+    '<div class="col s12">' +
+      '<h5 class="jobName left">' + data.name + '</h5>' +
+      '<div class="jobDetails right">' +
+        '<div class="jobPosted">Posted ' + data.posted + '</div>' +
+        '<div class="jobWage right">$' + data.wage + ' / hr</div>' +
+      '</div>' +
+    '</div>' +
+    '<div class="col s12">' +
+      '<p class="jobEmployer"><b>Employer: </b>' + data.employer + '</p>' +
+      '<p class="jobLocation"><b>Location: </b>' + data.location + '</p>' +
+      '<p class="jobDistance"><b>Distance: </b>' + data.distance + '</p>' +
+      '<p class="jobDuration"><b>Duration: </b>' + data.duration + '</p>' +
+      '<p class="jobTime"><b>Start: </b>' + data.startDate + '</p>' +
+      '<p class="jobTime"><b>End: </b>' + data.endDate + '</p>' +
+      '<p class="jobDescription">' + data.description + '</p>' +
+      (data.review ?
+        '<h5><b>Review:</b></h5>' +
+        '<p>' + data.review.text + '</p>' +
+        '<i class="material-icons center face large">' + data.review.rating + '</i>'
+        : '') +
+    '</div>' +
+    '<div class="col s12">' +
+      '<button id="reviewButton" class="waves-effect waves-light btn bottomButton blue darken-0"' + (data.review ? 'disabled' : '') + '>Review</button>' +
+    '</div>' +
+  '</div>');
 }
 
 function showHistoryPanels() {
@@ -235,15 +285,38 @@ function showHistoryPanels() {
   showHamburger();
 }
 
+//////////////////
+// Review Job   //
+//////////////////
+
+function renderReview(data) {
+  return $('' +
+  '<div class="reviewPanel row">' +
+    '<div class="col s12">' +
+      '<h5><b>Reviewing: </b><em>' + data.employer + '</em></h5>' +
+    '</div>' +
+    '<div class="col s12">' +
+      '<p>Describe your experience:</p>' +
+      '<textarea id="reviewArea"></textarea>' +
+      '<p>Rate your employer:</p>' +
+      '<div style="text-align:center;">' +
+        '<a><i class="material-icons center face large">sentiment_very_dissatisfied</i></a>' +
+        '<a><i class="material-icons center face large">sentiment_dissatisfied</i></a>' +
+        '<a><i class="material-icons center face large">sentiment_neutral</i></a>' +
+        '<a><i class="material-icons center face large">sentiment_satisfied</i></a>' +
+        '<a><i class="material-icons center face large">sentiment_very_satisfied</i></a>' +
+      '</div>' +
+    '</div>' +
+    '<div class="col s12" style="position:fixed; bottom:0;">' +
+      '<a id="cancelButton" class="waves-effect waves-light btn red halfButton"><i class="material-icons left">cancel</i>Cancel</a>' +
+      '<a id="submitReviewButton" class="waves-effect waves-light btn green darken-0 halfButton"><i class="material-icons left">check_circle</i>Submit</a>' +
+    '</div>' +
+  '</div>');
+}
+
 function highlightFace() {
-  $('.face').click(function () {
+  $('.face').click(function() {
     $('.selected').removeClass('selected');
     $(this).addClass('selected');
   });
-}
-
-var review = '';
-function submitReview() {
-  review = $('#reviewArea').val();
-  showHistoryPanels();
 }

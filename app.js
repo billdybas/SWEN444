@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 //////////////////////////
 ///Express Configuration//
@@ -36,7 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/',function(req, res){
     res.sendfile('public/index.html');
 });
-app.use('/users', users);
 
 //////////////////////////
 ///Server/////////////////
