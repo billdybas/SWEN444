@@ -173,12 +173,12 @@ var users = [
       {skillName: 'Business'},
       {skillName: 'Wrestling'}
     ],
-    rating: 0.8
+    rating: 'sentiment_dissatisfied'
   },
   {
     id: 2,
     name: 'John Green',
-    profilePicture: 'pictures/john.jpg',
+    profilePicture: 'pictures/green.jpg',
     location: 'Indiana',
     jobs: [jobs[2]],
     skills: [
@@ -186,7 +186,7 @@ var users = [
       {skillName: 'Video Making'},
       {skillName: 'Speaking'}
     ],
-    rating: 1.0
+    rating: 'sentiment_very_satisfied'
   },
   {
     id: 3,
@@ -198,7 +198,7 @@ var users = [
       {skillName: 'Cleaning'},
       {skillName: 'Gardening'}
     ],
-    rating: 0.7
+    rating: 'sentiment_neutral'
   },
   {
     id: 4,
@@ -210,7 +210,7 @@ var users = [
       {skillName: 'Baseball'},
       {skillName: 'Running'}
     ],
-    rating: 0.4
+    rating: 'sentiment_very_dissatisfied'
   }
 ];
 

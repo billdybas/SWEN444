@@ -2,7 +2,7 @@ function createProfilePage() {
   $('.button-collapse').sideNav('hide');
   $('#profileName').html('<h4>' + state.user.name + '</h4>');
   $('#profileLoc').html('<b>' + state.user.location + '</b>');
-  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic">');
+  $('#profilePic').html('<img src="' + state.user.profilePicture + '" id="navProfilePic" class="profilePic">');
 
   $('#profileSkills').html(
     '<h5>Skills: </h5' +

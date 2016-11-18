@@ -55,7 +55,7 @@
             <div id="sidebar" class="side-nav">
                 <!-- Profile Picture -->
                 <div id="navProfile">
-                    <div style="padding:15px 0 0 15px"><img id="navProfilePic" onclick="createProfilePage()"/></div>
+                    <div style="padding:15px 0 0 15px"><img id="navProfilePic" class="profilePic" onclick="createProfilePage()"/></div>
                     <div id="navProfileName"></div>
                 </div>
                 <!-- Divider -->
@@ -76,6 +76,21 @@
         </div>
     </nav>
 </div>
+<!-- Login -->
+<div id="loginView">
+    <div id="loginCenter">
+        <h4>Welcome to TEMPiN</h4>
+        <input type="text">email</input>
+        <input type="password">password</input>
+        <br>
+        <br>
+        <a class="waves-effect waves-light btn green darken-0" onclick="switchViews()"><i class="material-icons left">perm_identity</i>Login</a>
+        <br>
+        <br>
+        <p>Don't have an account?</p>
+        <a class="waves-effect waves-light btn blue"><i class="material-icons left">mode_edit</i>Register</a>
+    </div>
+</div>
 <!-- Employee View -->
 <div id="employeeView" style="display:none">
     <!-- Main Content Section -->
@@ -89,22 +104,12 @@
 </div>
 <!-- Employer View -->
 <div id="employerView" style="display:none;">
-    <ul id="offerDropdown" class="dropdown-content">
-        <li><a id="openClose" href="#">Close</a></li>
-    </ul>
-    <div id="offerPanel">
-        <ul id="openJob" class="dropdown-content"><li><a href="#">Close</a></li></ul>
-        <ul id="closeJob" class="dropdown-content"><li><a href="#">Open</a></li></ul>
-    </div>
-    <div id="singleOfferView" style="display:none; ">
-        Job Title:<br><div id="singleOfferTitle"></div><br>
-        Posted:<br><div id="singleOfferPosted"></div><br>
-        Location:<br><div id="singleOfferLocation"></div><br>
-        Responsibilities:<br><div id="singleOfferResponsibilities"></div><br>
-        Description:<br><div id="singleOfferDescription"></div><br>
-        Date Range:<br><div id="singleOfferTiming"></div><br>
-        Pay Rate:<br><div id="singleOfferPayRate"></div>
-    </div>
+    <div id="offerPanel"></div>
+    <div id="singleOfferView" style="display:none;"></div>
+    <div id="offerApplicants" style="display:none;"></div>
+    <div id="offerApplicant" style="display:none;"></div>
+
+    <!-- TODO -->
     <div id="createJob" style="display:none">
         Job Title <input type="text" id="newJobName" class="inputField"><br>
         Location <input type="text" id="newJobLocation" class="inputField"><br>
@@ -115,8 +120,8 @@
         <input type="date" id="newJobEndDate" class="inputField" style="float:left;width:48%;margin-left:2%;"><br>
         Pay Rate <input type="text" id="newJobPay" class="inputField"><br>
         <div id="newJobButtonBar">
-            <button id="cancelCreateJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn">Cancel</button>
-            <button id="reviewCreateJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn">Review</button>
+            <button id="cancelCreateJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn red">Cancel</button>
+            <button id="reviewCreateJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn green darken-0">Review</button>
         </div>
     </div>
     <div id="reviewNewJob" style="display:none; font-size:16px; color:rgba(0, 0, 0, 0.87);">
@@ -127,25 +132,11 @@
         Date Range:<br><div id="reviewJobTiming"></div><br>
         Pay Rate:<br><div id="reviewJobPayRate"></div>
         <div id="reviewJobButtonBar">
-            <button id="cancelReviewJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn">Back</button>
-            <button id="submitReviewJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn">Submit</button>
+            <button id="cancelReviewJob" type="button" style="width:47%; float:left; margin-right:3%" class="waves-effect btn red">Back</button>
+            <button id="submitReviewJob" type="button" style="width:47%; float:left; margin-left:3%" class="waves-effect btn green darken-0">Submit</button>
         </div>
     </div>
-    <div id="offerApplicants"></div>
 </div>
-<div id="loginView">
-    <div id="loginCenter">
-        <h4>Welcome to TEMPiN</h4>
-        <input type="text">email</input>
-        <input type="password">password</input>
-        <br>
-        <br>
-        <a class="waves-effect waves-light btn" onclick="switchViews()"><i class="material-icons left">perm_identity</i>Login</a>
-        <p>Don't have an account?</p>
-        <a class="waves-effect waves-light btn"><i class="material-icons left">mode_edit</i>Register</a>
-    </div>
-</div>
-
 <div id="employeeProfile">
     <div id="profilePane" class="container" align="Center">
         <div id="profileHeader" >
@@ -170,7 +161,6 @@
         <div id="jobConfirmBtn"></div>
     </div>
 </div>
-
 </body>
 
 <script type="text/javascript">
@@ -186,21 +176,21 @@ $(document).ready(function () {
 
     $("#navProfilePic")[0].src = state.user.profilePicture;
     $("#navProfileName").html(state.user.name);
-    $("#postNewJob").on("click touch",function(){
+    $("#postNewJob").on("click touch", function(){
         showCreateJob();
     });
     $("#cancelCreateJob").on("click touch", function(){
         $("#backButton").off("click touch");
         showOffers();
     });
-    $("#reviewCreateJob").on("click touch",function(){
+    $("#reviewCreateJob").on("click touch", function(){
         showReviewNewJob();
     });
-    $("#cancelReviewJob").on("click touch",function(){
+    $("#cancelReviewJob").on("click touch", function(){
         $("#backButton").off("click touch");
         showCreateJob();
     });
-    $("#submitReviewJob").on("click touch",function(){
+    $("#submitReviewJob").on("click touch", function(){
         submitNewJob();
     });
 });
