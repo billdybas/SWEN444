@@ -337,6 +337,9 @@ function renderReview(data) {
         '<a><i class="material-icons center face large">sentiment_satisfied</i></a>' +
         '<a><i class="material-icons center face large">sentiment_very_satisfied</i></a>' +
       '</div>' +
+      '<br/>'+
+      '<br/>'+
+      '<br/>'+
     '</div>' +
     '<div class="col s12" style="position:fixed; bottom:0;">' +
       '<a id="cancelButton" class="waves-effect waves-light btn red halfButton"><i class="material-icons left">cancel</i>Cancel</a>' +
