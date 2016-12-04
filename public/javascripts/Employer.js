@@ -16,6 +16,7 @@ function showSingleOffer(id) {
 
   $('#offerPanel').css('display', 'none');
   $('#singleOfferView').empty().append(renderSingleOffer(offer)).css('display', 'block');
+  $('#currentPage').html(offer.name);
 
   $('#applicantsButton').on('click touch', function() {
     $('#singleOfferView').css('display', 'none');

@@ -41,8 +41,8 @@
             <!-- Hamburger Menu -->
             <a id="hamburger" href="#" data-activates="sidebar" class="button-collapse"><i class="material-icons">menu</i></a>
             <a id="backButton" href="#"><i class="material-icons">arrow_back</i></a>
-            <!-- Center Logo -->
-            <div><a href="/index.html" class="brand-logo">TEMPiN</a></div>
+            <!-- Current Page Title -->
+            <div><div class="brand-logo" id="currentPage"></div></div>
             <!-- Search Button -->
             <div id="rightNav">
                 <ul class="right">
@@ -62,9 +62,10 @@
                 <div class="divider" style="margin-top:0"></div>
                 <!-- Links -->
                 <ul id="employeeSideNav">
-                    <li><a id="jobList" onclick="showJobs()">Job Listings</a></li>
-                    <li><a id="jobHistory" href="#" onclick="showHistory()">Past Jobs</a></li>
+                    <li><a id="jobList">Job Listings</a></li>
+                    <li><a id="jobHistory" href="#">Past Jobs</a></li>
                 </ul>
+                <!-- TODO: Move this to Bottom Right -->
                 <ul id="employerSideNav" style="display:none;">
                     <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
                 </ul>
@@ -172,6 +173,14 @@ $(document).ready(function () {
     });
     createJobPanels();
     createOfferPanels();
+
+    $('#jobList').on('click touch', function() {
+        showJobs();
+    });
+
+    $('#jobHistory').on('click touch', function() {
+        showHistory();
+    });
 
     $("#navProfilePic")[0].src = state.user.profilePicture;
     $("#navProfileName").html(state.user.name);

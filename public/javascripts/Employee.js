@@ -41,6 +41,7 @@ function createProfilePage() {
   $('#singleJobView').css('display', 'none');
   $('#profilePane').css('display', 'block');
   $('#addJobPane').css('display', 'none');
+  $('#currentPage').html('Profile');
 
   showBackButton();
   $('#backButton').one('click touch', function () {
@@ -119,6 +120,7 @@ function createAddJobPage(){
 
 // Creates all the individual list elements and adds click event on them
 function createJobPanels() {
+  $('#panelView').empty();
   state.jobs.map(function(job) {
     $html = renderSingleJobPanel(job);
     $('#panelView').append($html.on('click touch', function() {
@@ -137,6 +139,7 @@ function showSingleJob(id) {
   $('#singleJobView').empty().append(renderSingleJob(job)).css('display', 'block');
   $('#panelView').css('display', 'none');
   $('#profilePane').css('display', 'none');
+  $('#currentPage').html(job.name);
 
   $('#applyButton').one('click touch', function() {
     applyToJob(state.user, job);
@@ -152,18 +155,21 @@ function showSingleJob(id) {
 function applyToJob(user, job) {
   state.offers.map(function(offer) {
     if (offer.id === job.id) {
-      offer.applicants.push(user);
+      offer.applicants.push(user.id);
       state.history.unshift(offer);
     }
   });
 
-  applySuccess(showPanels);
+  applySuccess(function() {
+    showPanels();
+    createJobPanels();
+  });
 }
 
 // How an individual job panel should be rendered
 function renderSingleJobPanel(data) {
   return $('' +
-    '<div class="jobPanel row">' +
+    '<div class="jobPanel row ' + (data.applicants.filter(function(applicant) { return applicant === state.user.id }).length ? 'lime lighten-5' : '') + '">' +
       '<div class="col s12">' +
         '<h5 class="jobName left">' + data.name + '</h5>' +
           '<div class="jobDetails right">' +
@@ -198,12 +204,13 @@ function renderSingleJob(data) {
       '<p class="jobDescription">' + data.description + '</p>' +
     '</div>' +
     '<div class="col s12">' +
-      '<a class="waves-effect waves-light btn bottomButton green darken-0" id="applyButton"><i class="material-icons left">done</i>Apply</a>' +
+      '<button class="waves-effect waves-light btn bottomButton green darken-0" id="applyButton"' + (data.applicants.filter(function(applicant) { return applicant === state.user.id }).length ? 'disabled' : '') + '><i class="material-icons left">done</i>Apply</button>' +
     '</div>' +
   '</div>');
 }
 
 function showPanels() {
+  $('#currentPage').html('Job Listings');
   $('#panelView').css('display', 'block');
   $('#singleJobView').css('display', 'none');
   $('#profilePane').css('display', 'none');
@@ -230,6 +237,7 @@ function showHistory() {
   }
 
   showEmployeeView();
+  $('#currentPage').html('Past Jobs');
 }
 
 function showSingleHistory(id) {
@@ -240,6 +248,7 @@ function showSingleHistory(id) {
   $('#singleHistoryView').empty().append(renderSingleHistory(job)).css('display', 'block');
   $('#panelView').css('display', 'none');
   $('#reviewView').css('display', 'none');
+  $('#currentPage').html(job.name);
 
   $("#reviewButton").one('click touch', function(){
       $('#reviewView').empty().append(renderReview(job)).css('display', 'block');
@@ -252,6 +261,7 @@ function showSingleHistory(id) {
 
       $('#singleHistoryView').css('display', 'none');
       $('#panelView').css('display', 'none');
+      $('#currentPage').html('Review');
 
       $('#submitReviewButton').one('click touch', function() {
         job.review = {
@@ -299,6 +309,7 @@ function renderSingleHistory(data) {
 }
 
 function showHistoryPanels() {
+  $('#currentPage').html('Past Jobs');
   $('#reviewView').css('display', 'none');
   $('#singleHistoryView').css('display', 'none');
   $('#panelView').css('display', 'block');

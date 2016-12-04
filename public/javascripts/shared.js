@@ -29,7 +29,7 @@ var jobs = [
     startDate: '11/4/2016',
     endDate: '5/5/2017',
     isOpen: chooseRandomElement([true, false]),
-    applicants: [2]
+    applicants: [1, 2]
   },
   {
     id: 3,
@@ -157,7 +157,7 @@ var jobs = [
     startDate: '11/4/2016',
     endDate: '11/5/2016',
     isOpen: chooseRandomElement([true, false]),
-    applicants: [1]
+    applicants: []
   }
 ];
 
@@ -220,7 +220,7 @@ state = {
     return user.id === 1;
   })[0],
   jobs: jobs,
-  history: [],
+  history: [jobs[1]],
   offers: jobs
 };
 
@@ -266,6 +266,8 @@ function showEmployeeView() {
 
   $('#switchViews').html('Change to Employer');
 
+  $('#currentPage').html('Job Listings');
+
   state.currentView = 'employee';
 }
 
@@ -279,6 +281,8 @@ function showEmployerView() {
   $('#employeeSideNav').css('display', 'none');
 
   $('#switchViews').html('Change to Employee');
+
+  $('#currentPage').html('Job Postings');
 
   state.currentView = 'employer';
 }
