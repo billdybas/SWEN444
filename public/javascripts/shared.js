@@ -166,10 +166,10 @@ var users = [
     id: 1,
     name: 'Donald Trump',
     profilePicture: 'pictures/trump.jpg',
-    location: 'Anywhere but the White House',
+    location: 'Washington DC',
     jobs: [jobs[0], jobs[1]],
     skills: [
-      {skillName: 'Intimidation'},
+      {skillName: 'Campaigning'},
       {skillName: 'Business'},
       {skillName: 'Wrestling'}
     ],
