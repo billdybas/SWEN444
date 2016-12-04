@@ -1,7 +1,7 @@
 var jobs = [
   {
     id: 1,
-    name: 'Construction Worker',
+    name: 'Construction',
     employer: 'Happy Time Construction',
     description: 'Help us build the next big skyscraper. Any experience wanted, from concrete layer to carpenter to electrician.',
     posted: '1 day ago',
@@ -17,7 +17,7 @@ var jobs = [
   },
   {
     id: 2,
-    name: 'Call Center Operator',
+    name: 'Call Center',
     employer: 'Don\'t Stop Calling',
     description: 'Call everyone you know to sell our amazing great product. Call them at all hours of the day and never leave a message.',
     posted: '2 days ago',
@@ -65,7 +65,7 @@ var jobs = [
   },
   {
     id: 5,
-    name: 'Warehouse Worker',
+    name: 'Warehouse Work',
     employer: 'Large Warehouse, Inc',
     description: 'Drive a forklift to move boxes from one end of the warehouse to another.',
     posted: '9 hours ago',
@@ -81,7 +81,7 @@ var jobs = [
   },
   {
     id: 6,
-    name: 'Construction Worker',
+    name: 'Construction',
     employer: 'Happy Time Construction',
     description: 'Help us build the next big skyscraper. Any experience wanted, from concrete layer to carpenter to electrician.',
     posted: '1 day ago',
@@ -97,7 +97,7 @@ var jobs = [
   },
   {
     id: 7,
-    name: 'Call Center Operator',
+    name: 'Call Center',
     employer: 'Don\'t Stop Calling',
     description: 'Call everyone you know to sell our amazing great product. Call them at all hours of the day and never leave a message.',
     posted: '2 days ago',
@@ -145,7 +145,7 @@ var jobs = [
   },
   {
     id: 10,
-    name: 'Warehouse Worker',
+    name: 'Warehouse Work',
     employer: 'Large Warehouse, Inc',
     description: 'Drive a forklift to move boxes from one end of the warehouse to another.',
     posted: '9 hours ago',
