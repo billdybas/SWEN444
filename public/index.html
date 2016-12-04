@@ -34,6 +34,7 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">View on Map</a></li>
         <li><a href="#">Filter Results</a></li>
+        <li class="postNewJob" style="display:none"><a  href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
     </ul>
     <!-- Navbar -->
     <nav class="primary-nav">
@@ -56,7 +57,7 @@
                 <!-- Profile Picture -->
                 <div id="navProfile">
                     <div style="padding:15px 0 0 15px"><img id="navProfilePic" class="profilePic" onclick="createProfilePage()"/></div>
-                    <div id="navProfileName"></div>
+                    <div id="navProfileName" onclick="createProfilePage()"></div>
                 </div>
                 <!-- Divider -->
                 <div class="divider" style="margin-top:0"></div>
@@ -67,7 +68,7 @@
                 </ul>
                 <!-- TODO: Move this to Bottom Right -->
                 <ul id="employerSideNav" style="display:none;">
-                    <li><a id="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
+                    <li><a class="postNewJob" href="#"><i class="material-icons" style="height:auto">add_circle</i>New Job Posting</a></li>
                 </ul>
                 <!-- Divider -->
                 <div class="divider" style="margin-top:0"></div>
@@ -184,7 +185,7 @@ $(document).ready(function () {
 
     $("#navProfilePic")[0].src = state.user.profilePicture;
     $("#navProfileName").html(state.user.name);
-    $("#postNewJob").on("click touch", function(){
+    $(".postNewJob").on("click touch", function(){
         showCreateJob();
     });
     $("#cancelCreateJob").on("click touch", function(){

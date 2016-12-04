@@ -17,7 +17,7 @@ function showSingleOffer(id) {
   $('#offerPanel').css('display', 'none');
   $('#singleOfferView').empty().append(renderSingleOffer(offer)).css('display', 'block');
   $('#currentPage').html(offer.name);
-
+    $('#offerApplicants').css('display', 'none');
   $('#applicantsButton').on('click touch', function() {
     $('#singleOfferView').css('display', 'none');
     $('#offerPanel').css('display', 'none');
@@ -170,6 +170,7 @@ function showCreateJob() {
   $('#createJob').css('display', 'block');
   showBackButton();
   $('#backButton').one('click touch', function() {
+      $('#createJob').css('display', 'none');
     showOffers();
   });
 }

@@ -259,6 +259,7 @@ function showEmployeeView() {
   // Don't show the Employer View
   $('#employerView').css('display', 'none');
   $('#employerSideNav').css('display', 'none');
+  $('.postNewJob').css('display', 'none');
 
   // Show the Employee View
   $('#employeeView').css('display', 'block');
@@ -275,6 +276,7 @@ function showEmployerView() {
   // Show the Employer View
   $('#employerView').css('display', 'block');
   $('#employerSideNav').css('display', 'block');
+  $('.postNewJob').css('display', 'block');
 
   // Don't show the Employee View
   $('#employeeView').css('display', 'none');
