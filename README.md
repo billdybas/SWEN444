@@ -46,15 +46,15 @@ MIT License
 - Review Past Jobs and Employers
 - Create New Job Listings
 - View Submitted Job Listings
+- Hire Candidates for Jobs
 
 ## Known Issues
 
 - Authentication doesn't require a username or password
 - Currently, one cannot register an account
 - Currently, one can only modify a profile, not create one
-- Reviewing a job does not correctly modify only that job
 - Search button is shown throughout the app, but it does nothing
 
 ## Disclaimer
 
-This software is for educational purposes only, and must not be used in a production environment unless significant work is done to prepare it for a production environment. Use is at your own risk.
+This software is an interaction prototype for educational purposes only, and must not be used in a production environment unless significant work is done to prepare it for a production environment. Use is at your own risk.
